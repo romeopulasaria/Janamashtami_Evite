@@ -134,11 +134,11 @@ export const Chapter2TempleEntrance: React.FC = () => {
 
             {/* Massive Brass Carvings */}
             <div className="z-10 flex flex-col items-center justify-around h-2/3 pointer-events-none">
-              <div className="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-amber-500/80 bg-gradient-to-br from-amber-300 via-amber-600 to-amber-800 flex items-center justify-center shadow-2xl">
-                <span className="text-4xl md:text-5xl text-amber-100 drop-shadow-md">🦚</span>
+              <div className="w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full border-2 sm:border-4 border-amber-500/80 bg-gradient-to-br from-amber-300 via-amber-600 to-amber-800 flex items-center justify-center shadow-2xl">
+                <span className="text-2xl sm:text-4xl md:text-5xl text-amber-100 drop-shadow-md">🦚</span>
               </div>
-              <div className="w-32 h-32 md:w-48 md:h-48 rounded-full border-[6px] border-amber-500/80 bg-gradient-to-br from-amber-300 via-amber-600 to-amber-800 flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-                <span className="text-6xl md:text-8xl text-amber-100 drop-shadow-lg">🪷</span>
+              <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 rounded-full border-4 sm:border-[6px] border-amber-500/80 bg-gradient-to-br from-amber-300 via-amber-600 to-amber-800 flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+                <span className="text-4xl sm:text-6xl md:text-8xl text-amber-100 drop-shadow-lg">🪷</span>
               </div>
             </div>
 
@@ -169,11 +169,11 @@ export const Chapter2TempleEntrance: React.FC = () => {
 
             {/* Massive Brass Carvings */}
             <div className="z-10 flex flex-col items-center justify-around h-2/3 pointer-events-none">
-              <div className="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-amber-500/80 bg-gradient-to-br from-amber-300 via-amber-600 to-amber-800 flex items-center justify-center shadow-2xl">
-                <span className="text-4xl md:text-5xl text-amber-100 drop-shadow-md">🦚</span>
+              <div className="w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full border-2 sm:border-4 border-amber-500/80 bg-gradient-to-br from-amber-300 via-amber-600 to-amber-800 flex items-center justify-center shadow-2xl">
+                <span className="text-2xl sm:text-4xl md:text-5xl text-amber-100 drop-shadow-md">🦚</span>
               </div>
-              <div className="w-32 h-32 md:w-48 md:h-48 rounded-full border-[6px] border-amber-500/80 bg-gradient-to-br from-amber-300 via-amber-600 to-amber-800 flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-                <span className="text-6xl md:text-8xl text-amber-100 drop-shadow-lg">🪷</span>
+              <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 rounded-full border-4 sm:border-[6px] border-amber-500/80 bg-gradient-to-br from-amber-300 via-amber-600 to-amber-800 flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+                <span className="text-4xl sm:text-6xl md:text-8xl text-amber-100 drop-shadow-lg">🪷</span>
               </div>
             </div>
 
@@ -200,7 +200,7 @@ export const Chapter2TempleEntrance: React.FC = () => {
                 exit={{ opacity: 0 }}
                 className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none"
               >
-                <div className="bg-emerald-950/70 px-8 py-4 rounded-xl border border-amber-500/50 text-amber-300 font-cinzel text-xl md:text-3xl tracking-widest uppercase animate-pulse-glow backdrop-blur-md shadow-[0_0_50px_rgba(5,150,105,0.4)]">
+                <div className="bg-emerald-950/70 px-4 sm:px-8 py-3 sm:py-4 rounded-xl border border-amber-500/50 text-amber-300 font-cinzel text-sm sm:text-xl md:text-3xl tracking-wider sm:tracking-widest uppercase animate-pulse-glow backdrop-blur-md shadow-[0_0_50px_rgba(5,150,105,0.4)]">
                   Push to Enter
                 </div>
               </motion.div>

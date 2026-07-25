@@ -17,6 +17,11 @@
     --text-secondary: #075985; /* deep blue */
   }
 
+  html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: var(--bg-light);
     color: var(--text-primary);
@@ -26,6 +31,8 @@
     padding: 0;
     user-select: none;
     -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
   }
 }
 
@@ -140,4 +147,29 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: #059669;
+}
+
+/* Diya Flame Animation */
+@keyframes diyaFlame {
+  0%, 100% {
+    transform: scaleY(1) scaleX(1) rotate(0deg);
+    opacity: 1;
+  }
+  25% {
+    transform: scaleY(1.08) scaleX(0.94) rotate(-2deg);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scaleY(0.92) scaleX(1.06) rotate(1deg);
+    opacity: 1;
+  }
+  75% {
+    transform: scaleY(1.05) scaleX(0.97) rotate(-1deg);
+    opacity: 0.92;
+  }
+}
+
+.animate-diya-flame {
+  animation: diyaFlame 2.5s ease-in-out infinite;
+  transform-origin: bottom center;
 }

@@ -51,16 +51,16 @@ export const Chapter6VenueCard: React.FC = () => {
       viewport={{ once: true }}
       className="w-full max-w-3xl mx-auto px-4 py-12 relative z-20"
     >
-      <div className="glass-panel rounded-3xl p-8 md:p-12 relative overflow-hidden border border-amber-200/50 shadow-xl bg-[#fffdf0]/95 backdrop-blur-md">
+      <div className="glass-panel rounded-3xl p-5 sm:p-8 md:p-12 relative overflow-hidden border border-amber-200/50 shadow-xl bg-[#fffdf0]/95 backdrop-blur-md">
         
         {/* Core Venue Information */}
-        <div className="text-center mb-10">
+        <div className="text-center mb-8 sm:mb-10">
           <span className="font-cinzel text-xs tracking-[0.35em] text-[#1e3a8a] uppercase font-bold flex items-center justify-center space-x-2 opacity-80">
             <MapPin className="w-3.5 h-3.5" />
             <span>Sacred Venue</span>
           </span>
           
-          <h3 className="font-cinzel text-4xl md:text-5xl text-[#0a192f] font-bold mt-5 tracking-wide drop-shadow-sm">
+          <h3 className="font-cinzel text-2xl sm:text-4xl md:text-5xl text-[#0a192f] font-bold mt-3 sm:mt-5 tracking-wide drop-shadow-sm">
             Arcadia Hall
           </h3>
           

@@ -77,7 +77,7 @@ export const Chapter7ImmersiveRsvp: React.FC = () => {
       viewport={{ once: true }}
       className="w-full max-w-4xl mx-auto px-4 py-12 relative z-20"
     >
-      <div className="parchment-scroll parchment-border-royal rounded-3xl p-8 md:p-12 relative overflow-hidden shadow-xl">
+      <div className="parchment-scroll parchment-border-royal rounded-3xl p-5 sm:p-8 md:p-12 relative overflow-hidden shadow-xl">
         
         {/* Header */}
         <div className="text-center mb-8">
@@ -86,7 +86,7 @@ export const Chapter7ImmersiveRsvp: React.FC = () => {
             <span>RESPONDEZ S&apos;IL VOUS PLAIT</span>
           </div>
 
-          <h2 className="font-cursive text-4xl md:text-5xl font-bold text-[#0a192f] tracking-wide">
+          <h2 className="font-cursive text-2xl sm:text-4xl md:text-5xl font-bold text-[#0a192f] tracking-wide">
             Accept The Sacred Invitation
           </h2>
           <p className="font-cormorant text-lg text-slate-700 italic mt-2 font-bold">
@@ -248,7 +248,7 @@ export const Chapter7ImmersiveRsvp: React.FC = () => {
                 <span className="font-cinzel text-xs tracking-[0.35em] text-slate-500 uppercase font-bold">
                   RSVP CONFIRMED
                 </span>
-                <h3 className="font-cursive text-4xl text-[#0a192f] font-bold mt-2">
+                <h3 className="font-cursive text-2xl sm:text-4xl text-[#0a192f] font-bold mt-2">
                   Thank You, {fullName}!
                 </h3>
                 <p className="font-cormorant text-lg text-[#0a192f] italic font-bold mt-3">
@@ -259,7 +259,7 @@ export const Chapter7ImmersiveRsvp: React.FC = () => {
               <div className="pt-4">
                 <button
                   onClick={handleDownloadCalendar}
-                  className="px-6 py-3 rounded-sm bg-gradient-to-b from-[#1e3a8a] to-[#0f172a] text-[#f8fafc] font-cinzel text-xs tracking-wider transition-all shadow-md hover:shadow-lg active:scale-95 flex items-center justify-center space-x-2 mx-auto font-bold border-[2px] border-slate-300/80 hover:brightness-110"
+                  className="px-6 py-3 min-h-[44px] rounded-sm bg-gradient-to-b from-[#1e3a8a] to-[#0f172a] text-[#f8fafc] font-cinzel text-xs tracking-wider transition-all shadow-md hover:shadow-lg active:scale-95 flex items-center justify-center space-x-2 mx-auto font-bold border-[2px] border-slate-300/80 hover:brightness-110 cursor-pointer"
                 >
                   <Calendar className="w-4 h-4 text-slate-300" />
                   <span>DOWNLOAD CALENDAR REMINDER (.ICS)</span>

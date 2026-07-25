@@ -34,7 +34,7 @@ export const EventTimeline: React.FC = () => {
         whileInView={{ opacity: 1 }}
         viewport={{ margin: "-20%", once: true }}
         transition={{ duration: 1.5 }}
-        className="relative py-24 mb-12 rounded-3xl overflow-hidden shadow-xl border border-amber-300"
+        className="relative py-12 sm:py-24 mb-8 sm:mb-12 rounded-3xl overflow-hidden shadow-xl border border-amber-300"
         style={{
           background: "linear-gradient(180deg, #fffbeb 0%, #fef3c7 100%)"
         }}
@@ -88,7 +88,7 @@ export const EventTimeline: React.FC = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ margin: "-20%", once: true }}
         transition={{ duration: 1.2 }}
-        className="relative py-20 px-6 mb-12 rounded-3xl bg-[#fffdf0] border border-slate-300/50 shadow-[0_5px_15px_rgba(0,0,0,0.05)]"
+        className="relative py-12 sm:py-20 px-4 sm:px-6 mb-8 sm:mb-12 rounded-3xl bg-[#fffdf0] border border-slate-300/50 shadow-[0_5px_15px_rgba(0,0,0,0.05)]"
       >
         <div className="text-center mb-8 sm:mb-12">
           <span className="font-cinzel text-xs sm:text-sm font-bold tracking-[0.25em] sm:tracking-[0.3em] text-[#1e3a8a] uppercase mb-2 block">
@@ -129,7 +129,7 @@ export const EventTimeline: React.FC = () => {
         whileInView={{ opacity: 1 }}
         viewport={{ margin: "-20%", once: true }}
         transition={{ duration: 1.5 }}
-        className="relative py-24 mb-12 rounded-3xl overflow-hidden shadow-lg border border-sky-200"
+        className="relative py-12 sm:py-24 mb-8 sm:mb-12 rounded-3xl overflow-hidden shadow-lg border border-sky-200"
         style={{
           background: "linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%)"
         }}
@@ -173,7 +173,7 @@ export const EventTimeline: React.FC = () => {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ margin: "-20%", once: true }}
         transition={{ duration: 1.2 }}
-        className="relative py-24 mb-16 rounded-3xl overflow-hidden shadow-xl border border-amber-200"
+        className="relative py-12 sm:py-24 mb-10 sm:mb-16 rounded-3xl overflow-hidden shadow-xl border border-amber-200"
         style={{
           background: "linear-gradient(180deg, #fdf8f6 0%, #fff7ed 100%)"
         }}
@@ -188,15 +188,15 @@ export const EventTimeline: React.FC = () => {
           <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
         </svg>
 
-        <div className="relative z-10 flex flex-col items-center text-center px-6">
-          <div className="w-16 h-16 rounded-full bg-orange-50 border border-orange-200 flex items-center justify-center mb-6 shadow-sm">
-            <Utensils className="w-8 h-8 text-orange-500" />
+        <div className="relative z-10 flex flex-col items-center text-center px-4 sm:px-6">
+          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-orange-50 border border-orange-200 flex items-center justify-center mb-4 sm:mb-6 shadow-sm">
+            <Utensils className="w-7 h-7 sm:w-8 sm:h-8 text-orange-500" />
           </div>
           
-          <span className="font-cinzel text-sm font-bold tracking-[0.3em] text-orange-700 uppercase mb-2">
+          <span className="font-cinzel text-xs sm:text-sm font-bold tracking-[0.25em] sm:tracking-[0.3em] text-orange-700 uppercase mb-2">
             9:30 PM Onwards
           </span>
-          <h3 className="font-cinzel text-3xl md:text-4xl text-amber-950 font-bold mb-4">
+          <h3 className="font-cinzel text-2xl sm:text-3xl md:text-4xl text-amber-950 font-bold mb-3 sm:mb-4">
             Midnight Mahaprasadam
           </h3>
           <p className="font-inter text-sm md:text-base font-medium text-amber-900 max-w-2xl leading-relaxed">

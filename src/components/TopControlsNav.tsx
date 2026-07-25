@@ -30,13 +30,16 @@ export const TopControlsNav: React.FC = () => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="fixed top-4 left-0 right-0 z-50 flex items-center justify-between px-4 md:px-8 pointer-events-none"
+      className="fixed top-3 sm:top-4 left-0 right-0 z-50 flex items-center justify-between px-2 sm:px-4 md:px-8 pointer-events-none"
     >
       {/* Left: Brand Badge */}
-      <div className="pointer-events-auto flex items-center space-x-1.5 sm:space-x-2 px-3 sm:px-4 py-2 min-h-[44px] rounded-full glass-panel border border-slate-400/30 shadow-lg">
-        <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-amber-400 animate-ping" />
-        <span className="font-cinzel text-[9px] sm:text-[10px] md:text-xs tracking-[0.18em] sm:tracking-[0.25em] text-slate-200 uppercase font-bold whitespace-nowrap">
+      <div className="pointer-events-auto flex items-center space-x-1.5 sm:space-x-2 px-2.5 sm:px-4 py-2 min-h-[44px] rounded-full glass-panel border border-slate-400/30 shadow-lg">
+        <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-amber-400 animate-ping shrink-0" />
+        <span className="hidden xs:inline font-cinzel text-[9px] sm:text-[10px] md:text-xs tracking-[0.15em] sm:tracking-[0.25em] text-slate-200 uppercase font-bold whitespace-nowrap">
           SHRI THAKURJI 25TH
+        </span>
+        <span className="xs:hidden font-cinzel text-[9px] tracking-[0.15em] text-slate-200 uppercase font-bold whitespace-nowrap">
+          25TH
         </span>
       </div>
 
@@ -54,9 +57,9 @@ export const TopControlsNav: React.FC = () => {
               <Pause className="w-3.5 h-3.5 text-amber-300" />
               {/* Animated Sound Equalizer Bars */}
               <div className="flex items-end space-x-0.5 h-3">
-                <span className="w-0.5 bg-amber-300 animate-bounce" style={{ animationDuration: "0.6s" }} />
-                <span className="w-0.5 bg-amber-300 animate-bounce" style={{ animationDuration: "0.9s" }} />
-                <span className="w-0.5 bg-amber-300 animate-bounce" style={{ animationDuration: "0.4s" }} />
+                <span className="w-0.5 h-3 bg-amber-300 animate-bounce" style={{ animationDuration: "0.6s" }} />
+                <span className="w-0.5 h-3 bg-amber-300 animate-bounce" style={{ animationDuration: "0.9s" }} />
+                <span className="w-0.5 h-3 bg-amber-300 animate-bounce" style={{ animationDuration: "0.4s" }} />
               </div>
             </>
           ) : (
@@ -81,7 +84,7 @@ export const TopControlsNav: React.FC = () => {
         {isIntroActive && (
           <button
             onClick={skipIntro}
-            className="flex items-center space-x-1.5 px-3.5 py-2 rounded-full glass-panel border border-amber-300/40 hover:bg-amber-400/20 text-amber-200 font-cinzel text-[10px] tracking-widest transition-all shadow-md"
+            className="flex items-center space-x-1.5 px-3 sm:px-3.5 min-h-[44px] py-2 rounded-full glass-panel border border-amber-300/40 hover:bg-amber-400/20 text-amber-200 font-cinzel text-[10px] tracking-widest transition-all shadow-md cursor-pointer"
           >
             <span>SKIP INTRO</span>
             <FastForward className="w-3 h-3" />
@@ -92,7 +95,7 @@ export const TopControlsNav: React.FC = () => {
         {!isIntroActive && (
           <button
             onClick={replayIntro}
-            className="p-2.5 rounded-full glass-panel border border-slate-400/30 hover:border-amber-300/50 text-slate-200 transition-colors"
+            className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full glass-panel border border-slate-400/30 hover:border-amber-300/50 text-slate-200 transition-colors cursor-pointer"
             title="Replay Cinematic Intro"
           >
             <RotateCcw className="w-3.5 h-3.5" />

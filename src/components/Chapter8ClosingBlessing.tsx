@@ -16,7 +16,7 @@ export const Chapter8ClosingBlessing: React.FC = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="w-full py-24 md:py-32 relative z-20">
+    <div className="w-full py-12 sm:py-24 md:py-32 relative z-20">
 
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -26,10 +26,10 @@ export const Chapter8ClosingBlessing: React.FC = () => {
         className="w-full max-w-4xl mx-auto px-4 relative z-20 text-center"
       >
         {/* Soft, warm cream / pale marigold yellow card */}
-        <div className="bg-[#fffdf0] rounded-[40px] p-8 md:p-16 relative overflow-hidden border-[6px] border-slate-300/50 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+        <div className="bg-[#fffdf0] rounded-[24px] sm:rounded-[40px] p-5 sm:p-8 md:p-16 relative overflow-hidden border-4 sm:border-[6px] border-slate-300/50 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
           
           {/* Decorative Inner Border */}
-          <div className="absolute inset-3 border-2 border-dashed border-slate-400/40 rounded-[30px] pointer-events-none" />
+          <div className="absolute inset-2 sm:inset-3 border-2 border-dashed border-slate-400/40 rounded-[18px] sm:rounded-[30px] pointer-events-none" />
 
           <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
             
@@ -52,13 +52,13 @@ export const Chapter8ClosingBlessing: React.FC = () => {
               className="flex flex-col items-center"
             >
               {/* High contrast deep navy blue cursive text */}
-              <h3 className="font-cursive text-5xl md:text-6xl text-[#0a192f] font-bold tracking-wide py-4 leading-normal drop-shadow-sm text-center">
+              <h3 className="font-cursive text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#0a192f] font-bold tracking-wide py-2 sm:py-4 leading-snug sm:leading-normal drop-shadow-sm text-center">
                 We eagerly await your gracious presence.
               </h3>
               
               <div className="w-24 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent my-6" />
 
-              <p className="font-cormorant text-xl md:text-2xl text-[#1e3a8a] italic font-bold leading-relaxed px-4 text-center">
+              <p className="font-cormorant text-lg sm:text-xl md:text-2xl text-[#1e3a8a] italic font-bold leading-relaxed px-2 sm:px-4 text-center">
                 May Shri Thakurji bless you and your family with peace, devotion, and joy. We look forward to celebrating this sacred occasion together.
               </p>
             </motion.div>
@@ -72,7 +72,7 @@ export const Chapter8ClosingBlessing: React.FC = () => {
               className="pt-12"
             >
               {/* Royal Blue & Silver Badge */}
-              <div className="inline-flex items-center space-x-4 px-8 py-4 rounded-sm bg-gradient-to-b from-[#1e3a8a] to-[#0f172a] border-[2px] border-slate-300/80 text-[#f8fafc] font-cinzel text-lg md:text-xl tracking-[0.4em] uppercase shadow-[0_10px_25px_rgba(0,0,0,0.3)] font-bold">
+              <div className="inline-flex items-center space-x-2 sm:space-x-4 px-4 sm:px-8 py-3 sm:py-4 rounded-sm bg-gradient-to-b from-[#1e3a8a] to-[#0f172a] border-[2px] border-slate-300/80 text-[#f8fafc] font-cinzel text-sm sm:text-lg md:text-xl tracking-[0.2em] sm:tracking-[0.4em] uppercase shadow-[0_10px_25px_rgba(0,0,0,0.3)] font-bold">
                 <Sparkles className="w-5 h-5 text-slate-300" />
                 <span className="drop-shadow-sm">JAI SHRI KRISHNA</span>
                 <Sparkles className="w-5 h-5 text-slate-300" />

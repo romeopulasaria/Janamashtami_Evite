@@ -36,11 +36,11 @@ export const Chapter3SanctumReveal: React.FC = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 1.8 }}
-      className="fixed inset-0 z-30 flex flex-col items-center justify-center bg-emerald-50/80 backdrop-blur-sm px-4 py-8 overflow-y-auto text-center"
+      className="fixed inset-0 z-30 flex flex-col items-center justify-center bg-emerald-50/80 backdrop-blur-sm px-3 sm:px-4 py-6 sm:py-8 overflow-y-auto text-center"
     >
       {/* Soft Light Halo */}
       <div
-        className="absolute w-[600px] h-[600px] rounded-full bg-radial from-amber-400/20 via-emerald-400/10 to-transparent blur-3xl pointer-events-none transition-transform duration-700 ease-out"
+        className="absolute w-[80vw] h-[80vw] max-w-[600px] max-h-[600px] rounded-full bg-radial from-amber-400/20 via-emerald-400/10 to-transparent blur-3xl pointer-events-none transition-transform duration-700 ease-out"
         style={{
           transform: `translate(${mousePos.x}px, ${mousePos.y}px)`,
         }}
@@ -62,7 +62,7 @@ export const Chapter3SanctumReveal: React.FC = () => {
           <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-amber-300/40 via-emerald-200/40 to-amber-300/40 blur-xl animate-pulse-glow" />
 
           {/* Golden Frame */}
-          <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full border-4 border-amber-500/60 p-3 bg-white/95 shadow-[0_0_50px_rgba(5,150,105,0.15)] flex items-center justify-center overflow-hidden">
+          <div className="relative w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 rounded-full border-4 border-amber-500/60 p-2 sm:p-3 bg-white/95 shadow-[0_0_50px_rgba(5,150,105,0.15)] flex items-center justify-center overflow-hidden">
             
             {/* SVG Radha-Krishna & Flute Silhouette Artwork */}
             <svg viewBox="0 0 200 200" className="w-full h-full text-emerald-900">
@@ -131,18 +131,18 @@ export const Chapter3SanctumReveal: React.FC = () => {
           className="space-y-4"
         >
           {/* Main Motto */}
-          <div className="flex items-center justify-center space-x-3 text-emerald-800 font-cinzel text-xs md:text-sm tracking-[0.4em] uppercase font-bold">
+          <div className="flex items-center justify-center space-x-2 sm:space-x-3 text-emerald-800 font-cinzel text-[10px] sm:text-xs md:text-sm tracking-[0.2em] sm:tracking-[0.4em] uppercase font-bold">
             <Sparkles className="w-3.5 h-3.5 text-amber-500" />
             <span>COMPASSION IS KRISHNA</span>
             <Sparkles className="w-3.5 h-3.5 text-amber-500" />
           </div>
 
           {/* Main Headline */}
-          <h1 className="font-cursive text-5xl md:text-6xl lg:text-7xl font-bold tracking-wide text-peacock-gradient leading-tight py-2">
+          <h1 className="font-cursive text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-wide text-peacock-gradient leading-tight py-2">
             With the Divine Blessings
           </h1>
 
-          <p className="font-cormorant text-xl md:text-2xl text-emerald-900 font-medium italic max-w-xl mx-auto">
+          <p className="font-cormorant text-lg sm:text-xl md:text-2xl text-emerald-900 font-medium italic max-w-xl mx-auto">
             The Kumar Family lovingly invites you to celebrate
           </p>
 
@@ -164,7 +164,7 @@ export const Chapter3SanctumReveal: React.FC = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1 }}
           whileHover={{ y: 5 }}
-          className="mt-8 px-8 py-3 rounded-full glass-panel-peacock border border-emerald-300 text-emerald-950 font-cinzel text-xs tracking-[0.25em] font-bold flex items-center space-x-3 hover:border-emerald-500 transition-all shadow-lg"
+          className="mt-6 sm:mt-8 px-6 sm:px-8 py-3 min-h-[48px] rounded-full glass-panel-peacock border border-emerald-300 text-emerald-950 font-cinzel text-[10px] sm:text-xs tracking-[0.15em] sm:tracking-[0.25em] font-bold flex items-center space-x-2 sm:space-x-3 hover:border-emerald-500 transition-all shadow-lg"
         >
           <span>UNFURL INVITATION SCROLL</span>
           <ChevronDown className="w-4 h-4 text-emerald-700 animate-bounce" />
