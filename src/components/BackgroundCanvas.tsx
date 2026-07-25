@@ -43,14 +43,13 @@ export const BackgroundCanvas: React.FC<{ activeState?: string }> = ({ activeSta
 
     window.addEventListener("resize", handleResize);
 
-    const isMobile = width < 768;
-    // Total count: 18 particles on desktop (~6 bg, 8 mid, 4 fg), 9 on mobile for optimal performance
-    const targetCount = isMobile ? 9 : 18;
-
-    const layers: DepthLayer[] = ["bg", "mid", "fg"];
+    const isMobile = width < 640;
+    const isTablet = width >= 640 && width < 1024;
+    // Particle Density: Desktop (40 petals), Tablet (28 petals), Mobile (20 petals)
+    const targetCount = isMobile ? 20 : isTablet ? 28 : 40;
 
     const createParticle = (initialYOverride?: number): FlowerParticle => {
-      // 5% chance of peacock feather, equal distribution of the 4 flower petals
+      // 5% chance of peacock feather, equal distribution of jasmine, lotus, marigold, blossom
       const rand = Math.random();
       let variant: FlowerVariant = "jasmine";
       if (rand < 0.05) variant = "peacock";
@@ -105,7 +104,7 @@ export const BackgroundCanvas: React.FC<{ activeState?: string }> = ({ activeSta
       };
     };
 
-    // Initialize particles spread evenly across height on load
+    // Initialize particles spread evenly across height on load so rain is continuous
     const particles: FlowerParticle[] = Array.from({ length: targetCount }, (_, i) => {
       const ySpread = (height / targetCount) * i - Math.random() * 50;
       return createParticle(ySpread);
