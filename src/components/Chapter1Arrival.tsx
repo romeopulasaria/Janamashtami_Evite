@@ -98,25 +98,10 @@ export const Chapter1Arrival: React.FC = () => {
   const petalR  = useStableRandom(8,  200);
   const flyR    = useStableRandom(6,  300);
 
-  // Scroll detection to trigger experience
-  useEffect(() => {
-    if (currentState !== "Landing" || isStarting) return;
-
-    const handleScroll = (e: WheelEvent | TouchEvent) => {
-      if (e instanceof WheelEvent && e.deltaY > 10) {
-        handleStart();
-      } else if (e instanceof TouchEvent) {
-        handleStart();
-      }
-    };
-
-    window.addEventListener("wheel", handleScroll, { passive: true });
-    window.addEventListener("touchmove", handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener("wheel", handleScroll);
-      window.removeEventListener("touchmove", handleScroll);
-    };
-  }, [currentState, isStarting]);
+  /* 
+   * NOTE: Auto-transition on wheel/touchmove has been intentionally removed.
+   * The invitation MUST ONLY open when the visitor explicitly clicks the "Enter the Mahotsav" CTA button.
+   */
 
   if (currentState !== "Landing") return null;
 
