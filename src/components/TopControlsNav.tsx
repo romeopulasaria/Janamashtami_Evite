@@ -30,7 +30,8 @@ export const TopControlsNav: React.FC = () => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="fixed top-3 sm:top-4 left-0 right-0 z-50 flex items-center justify-between px-2 sm:px-4 md:px-8 pointer-events-none"
+      className="fixed left-0 right-0 z-50 flex items-center justify-between px-2 sm:px-4 md:px-8 pointer-events-none"
+      style={{ top: "max(0.75rem, env(safe-area-inset-top))" }}
     >
       {/* Left: Brand Badge */}
       <div className="pointer-events-auto flex items-center space-x-1.5 sm:space-x-2 px-2.5 sm:px-4 py-2 min-h-[44px] rounded-full glass-panel border border-slate-400/30 shadow-lg">

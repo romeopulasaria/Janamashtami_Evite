@@ -52,12 +52,13 @@ export const BackgroundCanvas: React.FC<{ activeState?: string }> = () => {
     window.addEventListener("resize", handleResize);
 
     // Responsive particle counts:
-    // Desktop (≥1024): 35 petals | Tablet (640–1023): 22 petals | Mobile (<640): 16 petals
+    // Desktop (≥1024): 35 petals | Tablet (640–1023): 22 petals | Mobile (<640): 12 petals
     const w = window.innerWidth;
-    const targetCount = w < 640 ? 16 : w < 1024 ? 22 : 35;
+    const isMobile = w < 640;
+    const targetCount = isMobile ? 12 : w < 1024 ? 22 : 35;
 
     const createParticle = (initialY?: number): FlowerParticle => {
-      // Equal distribution across 4 flower types (no peacock — too complex for perf)
+      // Equal distribution across 4 flower types
       const variants: FlowerVariant[] = ["jasmine", "lotus", "marigold", "blossom"];
       const variant = variants[Math.floor(Math.random() * variants.length)];
 
@@ -79,16 +80,18 @@ export const BackgroundCanvas: React.FC<{ activeState?: string }> = () => {
       const fallSec = 8 + Math.random() * 10;
       const baseSpeedY = ((height + 80) / (fallSec * 60)) * dc.speedMult;
 
-      const baseSize = variant === "blossom" ? 10 : 14;
+      // Reduced size on mobile (0.65 scale) for non-cluttered portrait viewport
+      const mobileSizeScale = isMobile ? 0.65 : 1.0;
+      const baseSize = (variant === "blossom" ? 9 : 13) * mobileSizeScale;
 
       return {
         x: Math.random() * width,
         y: initialY !== undefined ? initialY : -30 - Math.random() * 80,
         variant,
         layer,
-        size: (baseSize + Math.random() * 6) * dc.scale,
+        size: (baseSize + Math.random() * (isMobile ? 4 : 6)) * dc.scale,
         baseSpeedY,
-        driftAmplitude: 0.3 + Math.random() * 0.7,
+        driftAmplitude: (isMobile ? 0.2 : 0.3) + Math.random() * (isMobile ? 0.4 : 0.7),
         driftFrequency: 0.006 + Math.random() * 0.014,
         driftPhase: Math.random() * Math.PI * 2,
         rotation: Math.random() * Math.PI * 2,
