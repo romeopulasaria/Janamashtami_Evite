@@ -2,71 +2,16 @@
 
 import React from "react";
 import { motion, Variants } from "framer-motion";
+import { MOTION_TOKENS } from "@/lib/motion-tokens";
 
 interface TextEffectProps {
   children: string;
-  per?: "word" | "char" | "line";
+  per?: "word" | "line";
   as?: React.ElementType;
   className?: string;
   delay?: number;
-  speedReveal?: number;
-  preset?: "fade-in-blur" | "fade-up" | "slide";
+  category?: "ceremonial" | "supporting" | "functional";
 }
-
-const presetVariants: Record<string, { container: Variants; item: Variants }> = {
-  "fade-in-blur": {
-    container: {
-      hidden: { opacity: 0 },
-      visible: (i = 1) => ({
-        opacity: 1,
-        transition: { staggerChildren: 0.04, delayChildren: i * 0.1 },
-      }),
-    },
-    item: {
-      hidden: { opacity: 0, filter: "blur(6px)", y: 8 },
-      visible: {
-        opacity: 1,
-        filter: "blur(0px)",
-        y: 0,
-        transition: { type: "spring", stiffness: 180, damping: 24 },
-      },
-    },
-  },
-  "fade-up": {
-    container: {
-      hidden: { opacity: 0 },
-      visible: (i = 1) => ({
-        opacity: 1,
-        transition: { staggerChildren: 0.05, delayChildren: i * 0.1 },
-      }),
-    },
-    item: {
-      hidden: { opacity: 0, y: 12 },
-      visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] },
-      },
-    },
-  },
-  slide: {
-    container: {
-      hidden: { opacity: 0 },
-      visible: (i = 1) => ({
-        opacity: 1,
-        transition: { staggerChildren: 0.03, delayChildren: i * 0.1 },
-      }),
-    },
-    item: {
-      hidden: { opacity: 0, y: 16 },
-      visible: {
-        opacity: 1,
-        y: 0,
-        transition: { type: "spring", stiffness: 220, damping: 20 },
-      },
-    },
-  },
-};
 
 export const TextEffect: React.FC<TextEffectProps> = ({
   children,
@@ -74,21 +19,63 @@ export const TextEffect: React.FC<TextEffectProps> = ({
   as: Component = "span",
   className = "",
   delay = 0,
-  preset = "fade-in-blur",
+  category = "ceremonial",
 }) => {
-  const { container, item } = presetVariants[preset] || presetVariants["fade-in-blur"];
+  const isCeremonial = category === "ceremonial";
+  const isSupporting = category === "supporting";
 
-  const segments =
-    per === "char"
-      ? children.split("")
-      : per === "word"
-      ? children.split(" ")
-      : [children];
+  const duration = isCeremonial
+    ? MOTION_TOKENS.duration.ceremonial
+    : isSupporting
+    ? MOTION_TOKENS.duration.supporting
+    : MOTION_TOKENS.duration.functional;
+
+  const offsetY = isCeremonial
+    ? MOTION_TOKENS.offsetY.ceremonialDesktop
+    : isSupporting
+    ? MOTION_TOKENS.offsetY.supportingDesktop
+    : MOTION_TOKENS.offsetY.functionalDesktop;
+
+  const ease = isCeremonial
+    ? MOTION_TOKENS.easing.ceremonial
+    : isSupporting
+    ? MOTION_TOKENS.easing.supporting
+    : MOTION_TOKENS.easing.functional;
+
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: (d = delay) => ({
+      opacity: 1,
+      transition: {
+        staggerChildren: per === "word" ? 0.1 : 0.18,
+        delayChildren: d,
+      },
+    }),
+  };
+
+  const itemVariants: Variants = {
+    hidden: {
+      opacity: 0,
+      y: offsetY,
+      filter: isCeremonial ? MOTION_TOKENS.blur.ceremonial : "blur(0px)",
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: {
+        duration,
+        ease,
+      },
+    },
+  };
+
+  const segments = per === "word" ? children.split(" ") : [children];
 
   return (
     <motion.span
       className={`inline-block ${className}`}
-      variants={container}
+      variants={containerVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-10%" }}
@@ -97,7 +84,7 @@ export const TextEffect: React.FC<TextEffectProps> = ({
       {segments.map((segment, idx) => (
         <motion.span
           key={`${segment}-${idx}`}
-          variants={item}
+          variants={itemVariants}
           className="inline-block whitespace-pre"
         >
           {segment}

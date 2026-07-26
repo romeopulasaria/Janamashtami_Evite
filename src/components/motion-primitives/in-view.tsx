@@ -2,62 +2,65 @@
 
 import React from "react";
 import { motion, Variants } from "framer-motion";
+import { MOTION_TOKENS } from "@/lib/motion-tokens";
 
 interface InViewProps {
   children: React.ReactNode;
   id?: string;
   className?: string;
-  variant?: "blur-fade" | "fade-up" | "scale-in" | "slide-up";
+  category?: "ceremonial" | "supporting" | "functional";
   delay?: number;
-  duration?: number;
   margin?: string;
   once?: boolean;
 }
-
-const variantsMap: Record<string, Variants> = {
-  "blur-fade": {
-    hidden: { opacity: 0, filter: "blur(8px)", y: 16 },
-    visible: {
-      opacity: 1,
-      filter: "blur(0px)",
-      y: 0,
-    },
-  },
-  "fade-up": {
-    hidden: { opacity: 0, y: 24 },
-    visible: {
-      opacity: 1,
-      y: 0,
-    },
-  },
-  "scale-in": {
-    hidden: { opacity: 0, scale: 0.94, y: 12 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-    },
-  },
-  "slide-up": {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-    },
-  },
-};
 
 export const InView: React.FC<InViewProps> = ({
   children,
   id,
   className = "",
-  variant = "blur-fade",
+  category = "supporting",
   delay = 0,
-  duration = 0.8,
-  margin = "-10%",
+  margin = "-15%",
   once = true,
 }) => {
-  const selectedVariant = variantsMap[variant] || variantsMap["blur-fade"];
+  const isCeremonial = category === "ceremonial";
+  const isSupporting = category === "supporting";
+
+  const duration = isCeremonial
+    ? MOTION_TOKENS.duration.ceremonial
+    : isSupporting
+    ? MOTION_TOKENS.duration.supporting
+    : MOTION_TOKENS.duration.functional;
+
+  const offsetY = isCeremonial
+    ? MOTION_TOKENS.offsetY.ceremonialDesktop
+    : isSupporting
+    ? MOTION_TOKENS.offsetY.supportingDesktop
+    : MOTION_TOKENS.offsetY.functionalDesktop;
+
+  const ease = isCeremonial
+    ? MOTION_TOKENS.easing.ceremonial
+    : isSupporting
+    ? MOTION_TOKENS.easing.supporting
+    : MOTION_TOKENS.easing.functional;
+
+  const variants: Variants = {
+    hidden: {
+      opacity: 0,
+      y: offsetY,
+      filter: isCeremonial ? MOTION_TOKENS.blur.ceremonial : "blur(0px)",
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: {
+        duration,
+        delay,
+        ease,
+      },
+    },
+  };
 
   return (
     <motion.div
@@ -65,12 +68,7 @@ export const InView: React.FC<InViewProps> = ({
       initial="hidden"
       whileInView="visible"
       viewport={{ once, margin }}
-      transition={{
-        duration,
-        delay,
-        ease: [0.25, 0.1, 0.25, 1.0],
-      }}
-      variants={selectedVariant}
+      variants={variants}
       className={className}
     >
       {children}

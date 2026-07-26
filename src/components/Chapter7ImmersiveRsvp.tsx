@@ -72,34 +72,38 @@ export const Chapter7ImmersiveRsvp: React.FC = () => {
   if (!isVisible) return null;
 
   return (
-    <InView id="rsvp-section" variant="blur-fade" duration={0.9} className="w-full max-w-4xl mx-auto px-4 py-12 relative z-20">
+    <InView id="rsvp-section" category="supporting" className="w-full max-w-4xl mx-auto px-4 py-12 relative z-20">
       <div className="parchment-scroll parchment-border-royal rounded-3xl p-5 sm:p-8 md:p-12 relative overflow-hidden shadow-xl">
         
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-[#0a192f] font-cinzel text-xs tracking-[0.3em] uppercase mb-4 font-bold shadow-sm">
-            <HeartHandshake className="w-4 h-4 text-amber-500" />
-            <span>RESPONDEZ S&apos;IL VOUS PLAIT</span>
-          </div>
+          <InView category="functional" delay={0.08}>
+            <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-[#0a192f] font-cinzel text-xs tracking-[0.3em] uppercase mb-4 font-bold shadow-sm">
+              <HeartHandshake className="w-4 h-4 text-amber-500" />
+              <span>RESPONDEZ S&apos;IL VOUS PLAIT</span>
+            </div>
+          </InView>
 
           <h2 className="font-cursive text-2xl sm:text-4xl md:text-5xl font-bold text-[#0a192f] tracking-wide">
-            <TextEffect per="word" preset="fade-in-blur">
+            <TextEffect per="word" category="ceremonial" delay={0.18}>
               Accept The Sacred Invitation
             </TextEffect>
           </h2>
-          <p className="font-cormorant text-lg text-slate-700 italic mt-2 font-bold">
-            Please respond by August 15, 2026 to help us prepare your Mahaprasadam
-          </p>
+          <InView category="supporting" delay={0.28}>
+            <p className="font-cormorant text-lg text-slate-700 italic mt-2 font-bold">
+              Please respond by August 15, 2026 to help us prepare your Mahaprasadam
+            </p>
+          </InView>
         </div>
 
         <AnimatePresence mode="wait">
           {!isSubmitted ? (
             <motion.form
               key="rsvp-form"
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15, filter: "blur(4px)" }}
-              transition={{ duration: 0.6 }}
+              exit={{ opacity: 0, y: -12, filter: "blur(4px)" }}
+              transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1.0] }}
               onSubmit={handleSubmit}
               className="max-w-xl mx-auto space-y-6"
             >
@@ -129,7 +133,7 @@ export const Chapter7ImmersiveRsvp: React.FC = () => {
                 <div className="grid grid-cols-2 gap-4">
                   <motion.button
                     type="button"
-                    whileHover={{ scale: 1.02 }}
+                    whileHover={{ y: -2, transition: { duration: 0.2 } }}
                     whileTap={{ scale: 0.96 }}
                     onClick={() => setAttendance("accept")}
                     className={`min-h-[48px] py-3 px-3 sm:px-4 rounded-xl font-cinzel text-[11px] sm:text-xs font-bold tracking-wider border transition-all flex items-center justify-center space-x-1.5 sm:space-x-2 ${
@@ -143,7 +147,7 @@ export const Chapter7ImmersiveRsvp: React.FC = () => {
 
                   <motion.button
                     type="button"
-                    whileHover={{ scale: 1.02 }}
+                    whileHover={{ y: -2, transition: { duration: 0.2 } }}
                     whileTap={{ scale: 0.96 }}
                     onClick={() => setAttendance("decline")}
                     className={`min-h-[48px] py-3 px-3 sm:px-4 rounded-xl font-cinzel text-[11px] sm:text-xs font-bold tracking-wider border transition-all flex items-center justify-center space-x-1.5 sm:space-x-2 ${
@@ -227,7 +231,7 @@ export const Chapter7ImmersiveRsvp: React.FC = () => {
               <motion.button
                 type="submit"
                 whileHover={{ scale: 1.01 }}
-                whileTap={{ scale: 0.97 }}
+                whileTap={{ scale: 0.96 }}
                 className="relative overflow-hidden w-full min-h-[48px] py-4 rounded-sm outline-none transition-all flex items-center justify-center bg-gradient-to-b from-[#1e3a8a] to-[#0f172a] shadow-[0_10px_30px_rgba(0,0,0,0.3)] border-[2px] border-slate-300/80 hover:brightness-110 cursor-pointer group"
               >
                 <BorderTrail duration={4} size={60} />
@@ -241,9 +245,9 @@ export const Chapter7ImmersiveRsvp: React.FC = () => {
             /* Confirmation Screen */
             <motion.div
               key="rsvp-confirmation"
-              initial={{ opacity: 0, scale: 0.92, filter: "blur(6px)" }}
+              initial={{ opacity: 0, scale: 0.94, filter: "blur(4px)" }}
               animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="text-center py-8 space-y-6 max-w-lg mx-auto"
             >
               <div className="w-20 h-20 rounded-full bg-slate-100 border-2 border-[#1e3a8a] flex items-center justify-center text-[#1e3a8a] mx-auto shadow-md">
@@ -255,7 +259,7 @@ export const Chapter7ImmersiveRsvp: React.FC = () => {
                   RSVP CONFIRMED
                 </span>
                 <h3 className="font-cursive text-2xl sm:text-4xl text-[#0a192f] font-bold mt-2">
-                  <TextEffect per="word" preset="fade-in-blur">
+                  <TextEffect per="word" category="ceremonial">
                     {`Thank You, ${fullName}!`}
                   </TextEffect>
                 </h3>
@@ -267,7 +271,7 @@ export const Chapter7ImmersiveRsvp: React.FC = () => {
               <div className="pt-4">
                 <motion.button
                   onClick={handleDownloadCalendar}
-                  whileHover={{ scale: 1.02 }}
+                  whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.96 }}
                   className="px-6 py-3 min-h-[44px] rounded-sm bg-gradient-to-b from-[#1e3a8a] to-[#0f172a] text-[#f8fafc] font-cinzel text-xs tracking-wider transition-all shadow-md hover:shadow-lg flex items-center justify-center space-x-2 mx-auto font-bold border-[2px] border-slate-300/80 hover:brightness-110 cursor-pointer"
                 >
