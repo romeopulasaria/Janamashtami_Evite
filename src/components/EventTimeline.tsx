@@ -41,7 +41,7 @@ export const EventTimeline: React.FC = () => {
         {/* ------------------------------------------------------------- */}
         {/* PHASE 1: DIVINE ARRIVAL (6:30 PM)                             */}
         {/* ------------------------------------------------------------- */}
-        <InView variant="blur-fade" duration={1.0} delay={0.1}>
+        <InView category="ceremonial" delay={0.1}>
           <div 
             className="relative py-12 sm:py-24 mb-8 sm:mb-12 rounded-3xl overflow-hidden shadow-xl border border-amber-300 transition-all hover:border-amber-400 hover:shadow-2xl"
             style={{
@@ -81,7 +81,7 @@ export const EventTimeline: React.FC = () => {
                 6:30 PM
               </span>
               <h3 className="font-cursive text-3xl sm:text-5xl md:text-6xl text-amber-900 drop-shadow-sm mb-3 sm:mb-4">
-                <TextEffect per="word" preset="fade-in-blur">
+                <TextEffect per="word" category="ceremonial">
                   Divine Arrival of Shri Thakurji
                 </TextEffect>
               </h3>
@@ -95,7 +95,7 @@ export const EventTimeline: React.FC = () => {
         {/* ------------------------------------------------------------- */}
         {/* PHASE 2: DEVOTIONAL PERFORMANCES (6:30 - 8:00 PM)             */}
         {/* ------------------------------------------------------------- */}
-        <InView variant="fade-up" duration={1.0} delay={0.25}>
+        <InView category="supporting" delay={0.25}>
           <div className="relative py-12 sm:py-20 px-4 sm:px-6 mb-8 sm:mb-12 rounded-3xl bg-[#fffdf0] border border-slate-300/50 shadow-[0_5px_15px_rgba(0,0,0,0.05)]">
             <div className="text-center mb-8 sm:mb-12">
               <span className="font-cinzel text-xs sm:text-sm font-bold tracking-[0.25em] sm:tracking-[0.3em] text-[#1e3a8a] uppercase mb-2 block">
@@ -113,7 +113,7 @@ export const EventTimeline: React.FC = () => {
                 { icon: BookOpen, title: "Krishna Leela", desc: "Enchanting storytelling of the Lord's divine pastimes." },
                 { icon: Star, title: "Children's Offering", desc: "Innocent and pure spiritual performances by young devotees." }
               ].map((item, idx) => (
-                <InView key={idx} variant="blur-fade" delay={idx * 0.15}>
+                <InView key={idx} category="supporting" delay={idx * 0.15}>
                   <motion.div 
                     whileHover={{ y: -4, transition: { duration: 0.25 } }}
                     whileTap={{ scale: 0.97 }}
@@ -134,7 +134,7 @@ export const EventTimeline: React.FC = () => {
         {/* ------------------------------------------------------------- */}
         {/* PHASE 3: LIVE BHAJAN SANDHYA (8:00 - 9:30 PM)                 */}
         {/* ------------------------------------------------------------- */}
-        <InView variant="blur-fade" duration={1.0} delay={0.4}>
+        <InView category="ceremonial" delay={0.4}>
           <div 
             className="relative py-12 sm:py-24 mb-8 sm:mb-12 rounded-3xl overflow-hidden shadow-lg border border-sky-200 transition-all hover:border-sky-300"
             style={{
@@ -164,7 +164,7 @@ export const EventTimeline: React.FC = () => {
                 8:00 PM – 9:30 PM
               </span>
               <h3 className="font-cursive text-3xl sm:text-5xl md:text-6xl text-[#0a192f] drop-shadow-sm mb-3 sm:mb-4">
-                <TextEffect per="word" preset="fade-in-blur">
+                <TextEffect per="word" category="ceremonial">
                   Live Bhajan Sandhya
                 </TextEffect>
               </h3>
@@ -178,7 +178,7 @@ export const EventTimeline: React.FC = () => {
         {/* ------------------------------------------------------------- */}
         {/* PHASE 4: MAHAPRASADAM (9:30 PM ONWARDS)                       */}
         {/* ------------------------------------------------------------- */}
-        <InView variant="scale-in" duration={0.9} delay={0.55}>
+        <InView category="supporting" delay={0.55}>
           <div 
             className="relative py-12 sm:py-24 mb-10 sm:mb-16 rounded-3xl overflow-hidden shadow-xl border border-amber-200 transition-all hover:border-amber-300"
             style={{
@@ -225,7 +225,7 @@ export const EventTimeline: React.FC = () => {
         {/* ------------------------------------------------------------- */}
         {/* FAMILY MESSAGE BANNER                                         */}
         {/* ------------------------------------------------------------- */}
-        <InView variant="blur-fade" delay={0.65}>
+        <InView category="supporting" delay={0.65}>
           <div className="bg-[#fffdf0] rounded-2xl p-8 text-center relative overflow-hidden mb-12 shadow-[0_5px_15px_rgba(0,0,0,0.05)] border border-slate-300/50 transition-all hover:border-amber-300/60">
             <Heart className="w-8 h-8 text-amber-500 mx-auto mb-4 animate-pulse" />
             <h4 className="font-cinzel text-xl text-[#0a192f] font-bold mb-3">
@@ -243,7 +243,7 @@ export const EventTimeline: React.FC = () => {
         {/* ------------------------------------------------------------- */}
         {/* DRESS CODE SECTION                                            */}
         {/* ------------------------------------------------------------- */}
-        <InView variant="fade-up" delay={0.75}>
+        <InView category="functional" delay={0.75}>
           <div className="bg-[#fffdf0] rounded-xl p-6 text-center border border-slate-300/50 max-w-lg mx-auto shadow-md">
             <div className="flex items-center justify-center space-x-2 text-slate-500 font-cinzel text-xs tracking-[0.3em] uppercase mb-3 font-bold">
               <Sparkles className="w-3.5 h-3.5 text-amber-500" />
