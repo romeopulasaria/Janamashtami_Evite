@@ -41,8 +41,8 @@ export const BabyKrishnaLineArt: React.FC<BabyKrishnaLineArtProps> = ({
         }}
       >
         <Image
-          src="/images/krishna-lineart-transparent.png"
-          alt="Baby Krishna Line Art"
+          src="/images/krishna-colored-final.png"
+          alt="Baby Krishna Colored Illustration"
           fill
           priority
           style={{ objectFit: "contain", objectPosition: "center center" }}
