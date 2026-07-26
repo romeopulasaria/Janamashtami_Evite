@@ -6,6 +6,7 @@ import { useCinematic } from "@/context/CinematicContext";
 import Image from "next/image";
 import { Sparkles, Diamond } from "lucide-react";
 import { TextEffect } from "@/components/motion-primitives/text-effect";
+import { BabyKrishnaLineArt } from "@/components/BabyKrishnaLineArt";
 
 export const Chapter1Arrival: React.FC = () => {
   const { startExperience, currentState } = useCinematic();
@@ -155,47 +156,8 @@ export const Chapter1Arrival: React.FC = () => {
           transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1], delay: isStarting ? 0.1 : 0 }}
           className="relative z-20 flex flex-col items-center mt-auto mb-12 shrink-0 w-full max-w-md"
         >
-          {/* Krishna Halo (2.6s) - Soft radial warm-gold gradient */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.5, delay: 2.6 }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] h-[250px] md:w-[350px] md:h-[350px] bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.15)_0%,transparent_60%)] blur-xl z-0 pointer-events-none"
-          />
-
-          <div className="relative w-[200px] h-[200px] sm:w-[240px] sm:h-[240px] md:w-[280px] md:h-[280px] z-10 flex items-center justify-center">
-            {/* Krishna Line-Art (2.7s-3.3s) */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 2.8, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute inset-0 z-10"
-            >
-              <Image
-                src="/images/krishna-lineart-transparent.png"
-                alt="Baby Krishna Illustration"
-                fill
-                priority
-                style={{ objectFit: "contain", objectPosition: "center bottom" }}
-              />
-            </motion.div>
-
-            {/* Lotus Flowers (3.0s-3.5s) */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 3.1, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute -bottom-8 md:-bottom-12 w-[130%] h-[120px] md:h-[150px] z-20 pointer-events-none"
-            >
-              <Image
-                src="/images/lotus.png"
-                alt="Lotus Composition"
-                fill
-                priority
-                style={{ objectFit: "contain", objectPosition: "center bottom" }}
-              />
-            </motion.div>
-          </div>
+          {/* Krishna Line-Art (2.7s-3.3s) */}
+          <BabyKrishnaLineArt isStarting={isStarting} className="mt-2" />
         </motion.div>
 
         {/* ================================================================ */}
