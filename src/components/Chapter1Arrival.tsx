@@ -4,8 +4,9 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCinematic } from "@/context/CinematicContext";
 import Image from "next/image";
-import { Sparkles } from "lucide-react";
+import { Sparkles, Send } from "lucide-react";
 import { BorderTrail } from "@/components/motion-primitives/border-trail";
+import { TextEffect } from "@/components/motion-primitives/text-effect";
 
 export const Chapter1Arrival: React.FC = () => {
   const { startExperience, currentState } = useCinematic();
@@ -16,150 +17,187 @@ export const Chapter1Arrival: React.FC = () => {
   const handleStart = () => {
     if (isStarting) return;
     setIsStarting(true);
-    // 350ms button depression + gold illumination delay before starting transition
     setTimeout(() => {
       startExperience();
-    }, 350);
+    }, 1200); // 1.2s dissolve before unmounting
   };
 
   return (
     <AnimatePresence>
       <motion.div
-        key="hero-container"
+        key="live-composition-container"
         initial={{ opacity: 1 }}
-        exit={{
-          opacity: 0,
-          filter: "blur(10px)",
-          transition: { duration: 1.4, ease: [0.22, 1, 0.36, 1] },
-        }}
-        className="fixed inset-0 z-50 w-screen h-[100dvh] overflow-hidden"
-        style={{ backgroundColor: "#ecd6b3" }}
+        exit={{ opacity: 0, transition: { duration: 0.8, ease: "easeInOut" } }} // Container fades last if needed
+        className="fixed inset-0 z-50 w-screen h-[100dvh] overflow-hidden flex flex-col items-center justify-center bg-[#ecd6b3]"
       >
-        {/* Ambient Candlelight Warm Illumination Overlay (Midground Depth Plane) */}
+        {/* ================================================================ */}
+        {/* DEPTH PLANE 1: BACKGROUND & MANDALA GEOMETRY                     */}
+        {/* ================================================================ */}
+        {/* Ambient Candlelight Warm Illumination Overlay */}
         <motion.div
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          animate={{ opacity: isStarting ? 0 : 1 }}
           transition={{ duration: 1.8, delay: 0.4 }}
-          className="absolute inset-0 pointer-events-none z-15 bg-[radial-gradient(circle_at_50%_35%,rgba(251,191,36,0.12)_0%,rgba(212,175,55,0.05)_50%,transparent_80%)]"
+          className="absolute inset-0 pointer-events-none z-0 bg-[radial-gradient(circle_at_50%_40%,rgba(251,191,36,0.15)_0%,rgba(212,175,55,0.05)_50%,transparent_80%)]"
         />
 
-        {/* ================================================================ */}
-        {/* 1. DEDICATED DESKTOP HERO (md:flex)                              */}
-        {/* Base artwork remains 100% STABLE — zero zoom, zero scaling.       */}
-        {/* Gentle 0.8s opacity reveal at 0.15s.                              */}
-        {/* ================================================================ */}
-        <div className="hidden md:flex w-full h-full items-center justify-center">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: isStarting ? 0 : 1 }}
-            transition={{
-              duration: isStarting ? 1.2 : 0.9,
-              delay: isStarting ? 0 : 0.15,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="relative w-full h-full flex items-center justify-center"
-            style={{
-              aspectRatio: "1716 / 917",
-              maxWidth: "100vw",
-              maxHeight: "100vh",
-            }}
-          >
-            <Image
-              src="/images/homepage-cover.png"
-              alt="Shri Thakurji 25th Birthday Mahotsav"
-              fill
-              priority={true}
-              quality={100}
-              sizes="100vw"
-              style={{
-                objectFit: "contain",
-                objectPosition: "center center",
-              }}
-            />
-
-            {/* Desktop Interaction Button */}
-            <motion.button
-              onClick={handleStart}
-              disabled={isStarting}
-              aria-label="Enter the Mahotsav"
-              title="Enter the Mahotsav"
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.96 }}
-              style={{
-                position: "absolute",
-                top: "86.37%",
-                left: "33.68%",
-                width: "31.35%",
-                height: "7.42%",
-                minWidth: "140px",
-                minHeight: "44px",
-                background: "transparent",
-                border: "none",
-                outline: "none",
-                cursor: "pointer",
-                opacity: 0,
-                zIndex: 40,
-              }}
-            />
-          </motion.div>
-        </div>
+        {/* Subtle CSS Mandala Geometry (Abstract Rings) */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: isStarting ? 0 : 0.4, scale: 1 }}
+          transition={{ duration: 2.0, delay: 0.4, ease: "easeOut" }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] pointer-events-none z-0 opacity-40 flex items-center justify-center"
+        >
+          <div className="absolute w-[60%] h-[60%] border-[1px] border-amber-700/20 rounded-full" />
+          <div className="absolute w-[80%] h-[80%] border-[1px] border-amber-700/10 rounded-full border-dashed" />
+          <div className="absolute w-[100%] h-[100%] border-[1px] border-amber-700/5 rounded-full" />
+        </motion.div>
 
         {/* ================================================================ */}
-        {/* 2. DEDICATED MOBILE HERO (block md:hidden)                       */}
+        {/* DEPTH PLANE 2: TYPOGRAPHY HIERARCHY (Z-10)                       */}
         {/* ================================================================ */}
-        <div className="block md:hidden relative w-full h-[100dvh] overflow-hidden">
-          {/* Portrait Hero Artwork with gentle opacity reveal & 100% stability */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: isStarting ? 0 : 1 }}
-            transition={{
-              duration: isStarting ? 1.2 : 0.9,
-              delay: isStarting ? 0 : 0.15,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="absolute inset-0 z-10 w-full h-full"
-          >
-            <Image
-              src="/images/homepage-cover-mobile.png"
-              alt="Shri Thakurji 25th Birthday Mahotsav - Mobile"
-              fill
-              priority={true}
-              quality={100}
-              sizes="100vw"
-              style={{
-                objectFit: "cover",
-                objectPosition: "center top",
-              }}
-            />
-          </motion.div>
-
-          {/* Vignette Overlay */}
-          <div className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-b from-black/20 via-transparent to-black/40" />
-
-          {/* Thumb-Friendly Interactive Mobile Button Layer */}
+        <motion.div
+          animate={{ 
+            opacity: isStarting ? 0 : 1, 
+            y: isStarting ? -40 : 0, 
+            filter: isStarting ? "blur(12px)" : "blur(0px)" 
+          }}
+          transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
+          className="relative z-10 flex flex-col items-center text-center w-full max-w-4xl px-4 mt-[-10vh] md:mt-[-15vh]"
+        >
+          {/* Top Emblem & Silver Jubilee Invitation */}
           <motion.div 
             initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: isStarting ? 0 : 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute bottom-6 left-0 right-0 z-40 flex items-center justify-center px-6 pb-[max(0.75rem,env(safe-area-inset-bottom))]"
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+            className="flex flex-col items-center mb-6"
           >
-            <motion.button
-              onClick={handleStart}
-              disabled={isStarting}
-              aria-label="Enter the Mahotsav"
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.96 }}
-              className="relative overflow-hidden w-full max-w-[280px] min-w-[220px] min-h-[52px] py-3.5 px-6 rounded-full bg-gradient-to-r from-[#1e3a8a] via-[#0b192f] to-[#1e3a8a] border-2 border-amber-300/90 text-amber-100 font-cinzel text-xs sm:text-sm font-bold tracking-[0.2em] uppercase shadow-[0_10px_30px_rgba(0,0,0,0.6),0_0_20px_rgba(245,158,11,0.4)] transition-all flex items-center justify-center space-x-2.5 cursor-pointer hover:brightness-110"
-            >
-              <BorderTrail duration={isStarting ? 1.2 : 4} size={60} />
-              <Sparkles className="w-4 h-4 text-amber-300 animate-pulse shrink-0 relative z-10" />
-              <span className="drop-shadow-sm whitespace-nowrap relative z-10">
-                {isStarting ? "ENTERING..." : "ENTER THE MAHOTSAV"}
-              </span>
-              <Sparkles className="w-4 h-4 text-amber-300 animate-pulse shrink-0 relative z-10" />
-            </motion.button>
+            <Sparkles className="w-6 h-6 text-[#1e3a8a] mb-3 opacity-80" />
+            <div className="w-12 h-[1px] bg-amber-500/40 mb-3" />
+            <span className="font-cinzel text-xs md:text-sm tracking-[0.4em] text-[#1e3a8a] font-bold uppercase drop-shadow-sm">
+              SILVER JUBILEE INVITATION
+            </span>
           </motion.div>
-        </div>
+
+          {/* Shri Thakurji's (Ceremonial Cursive) */}
+          <h2 className="font-cursive text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-[#0a192f] tracking-wide leading-tight drop-shadow-sm mb-4">
+            <TextEffect per="word" category="ceremonial" delay={1.1}>
+              Shri Thakurji's
+            </TextEffect>
+          </h2>
+
+          {/* 25TH BIRTHDAY (Cinzel Serif) */}
+          <div className="font-cinzel text-2xl sm:text-4xl md:text-5xl text-amber-600 font-bold tracking-[0.15em] mb-4">
+            <TextEffect per="word" category="ceremonial" delay={1.5}>
+              25TH BIRTHDAY
+            </TextEffect>
+          </div>
+
+          {/* Subtitle / Blessing */}
+          <div className="font-cormorant text-base sm:text-lg md:text-xl text-[#1e3a8a] italic font-semibold max-w-2xl mx-auto tracking-wide">
+            <TextEffect per="line" category="supporting" delay={1.8}>
+              Silver Jubilee Janmashtami Mahotsav
+            </TextEffect>
+          </div>
+        </motion.div>
+
+        {/* ================================================================ */}
+        {/* DEPTH PLANE 3: ARTWORK - KRISHNA & LOTUS (Z-20)                  */}
+        {/* ================================================================ */}
+        <motion.div
+          animate={{ 
+            opacity: isStarting ? 0 : 1, 
+            scale: isStarting ? 0.95 : 1,
+            filter: isStarting ? "blur(10px)" : "blur(0px)" 
+          }}
+          transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1], delay: isStarting ? 0.1 : 0 }}
+          className="absolute bottom-[15vh] md:bottom-[8vh] left-1/2 -translate-x-1/2 w-[280px] h-[280px] md:w-[450px] md:h-[450px] z-20 pointer-events-none flex items-center justify-center"
+        >
+          {/* Subtle Warm Halo behind Krishna */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: isStarting ? 0 : 1, scale: 1 }}
+            transition={{ duration: 1.5, delay: 2.0 }}
+            className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.6)_0%,transparent_70%)] blur-2xl z-0"
+          />
+
+          {/* Krishna Asset */}
+          <motion.div
+            initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 0.9, delay: 2.2, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute inset-0 z-10"
+            style={{ mixBlendMode: "multiply" }} // Strips pure white background from generated placeholder
+          >
+            <Image
+              src="/images/krishna.png"
+              alt="Baby Krishna"
+              fill
+              priority
+              style={{ objectFit: "contain", objectPosition: "center bottom" }}
+            />
+          </motion.div>
+
+          {/* Lotus / Floral Asset */}
+          <motion.div
+            initial={{ opacity: 0, y: 8, filter: "blur(4px)", scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
+            transition={{ duration: 0.9, delay: 2.4, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute -bottom-8 md:-bottom-16 w-[120%] h-[150px] md:h-[220px] z-20"
+            style={{ mixBlendMode: "multiply" }}
+          >
+            <Image
+              src="/images/lotus.png"
+              alt="Lotus Flowers"
+              fill
+              priority
+              style={{ objectFit: "contain", objectPosition: "center bottom" }}
+            />
+          </motion.div>
+        </motion.div>
+
+        {/* ================================================================ */}
+        {/* DEPTH PLANE 4: REAL HTML CTA BUTTON (Z-40)                       */}
+        {/* ================================================================ */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ 
+            opacity: isStarting ? 0 : 1, 
+            y: isStarting ? 10 : 0 
+          }}
+          transition={{ 
+            duration: 0.8, 
+            delay: isStarting ? 0 : 2.8, 
+            ease: [0.22, 1, 0.36, 1] 
+          }}
+          className="absolute bottom-6 md:bottom-12 left-0 right-0 z-40 flex flex-col items-center justify-center px-6"
+        >
+          {/* Subtle CTA Glow */}
+          {isStarting && (
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1.2 }}
+              transition={{ duration: 1.0 }}
+              className="absolute inset-0 bg-amber-200/20 blur-2xl pointer-events-none rounded-full"
+            />
+          )}
+
+          <motion.button
+            onClick={handleStart}
+            disabled={isStarting}
+            aria-label="Enter the Mahotsav"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.96 }}
+            className="relative overflow-hidden w-full max-w-[320px] min-w-[240px] min-h-[56px] py-4 px-8 rounded-full bg-gradient-to-b from-[#1e3a8a] to-[#0f172a] border-[2px] border-amber-300/80 text-[#f8fafc] font-cinzel text-xs sm:text-sm font-bold tracking-[0.25em] uppercase shadow-[0_10px_30px_rgba(0,0,0,0.4),0_0_20px_rgba(245,158,11,0.2)] transition-all flex items-center justify-center space-x-3 cursor-pointer group hover:brightness-110"
+          >
+            <BorderTrail duration={isStarting ? 1.2 : 4} size={80} />
+            <Sparkles className="w-4 h-4 text-amber-300 animate-pulse shrink-0 relative z-10" />
+            <span className="drop-shadow-sm whitespace-nowrap relative z-10 group-hover:text-amber-100 transition-colors">
+              {isStarting ? "ENTERING..." : "ENTER THE MAHOTSAV"}
+            </span>
+            <Sparkles className="w-4 h-4 text-amber-300 animate-pulse shrink-0 relative z-10" />
+          </motion.button>
+        </motion.div>
       </motion.div>
     </AnimatePresence>
   );
