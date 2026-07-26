@@ -5,6 +5,7 @@ import { motion, Variants } from "framer-motion";
 
 interface InViewProps {
   children: React.ReactNode;
+  id?: string;
   className?: string;
   variant?: "blur-fade" | "fade-up" | "scale-in" | "slide-up";
   delay?: number;
@@ -48,6 +49,7 @@ const variantsMap: Record<string, Variants> = {
 
 export const InView: React.FC<InViewProps> = ({
   children,
+  id,
   className = "",
   variant = "blur-fade",
   delay = 0,
@@ -59,6 +61,7 @@ export const InView: React.FC<InViewProps> = ({
 
   return (
     <motion.div
+      id={id}
       initial="hidden"
       whileInView="visible"
       viewport={{ once, margin }}
