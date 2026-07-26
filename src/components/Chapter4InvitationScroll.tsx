@@ -45,27 +45,34 @@ export const Chapter4InvitationScroll: React.FC = () => {
             </div>
           </InView>
 
-          <h2 className="font-cursive text-3xl sm:text-5xl md:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-[#0a192f] via-[#1e3a8a] to-[#0a192f] tracking-wide leading-tight drop-shadow-sm">
-            <TextEffect per="word" category="ceremonial" delay={0.25}>
-              Shri Thakurji&apos;s 25th Birthday
-            </TextEffect>
-          </h2>
+          <div className="flex flex-col items-center justify-center w-full">
+            <h2 className="font-cursive text-[clamp(2rem,5vw,4.5rem)] text-transparent bg-clip-text bg-gradient-to-r from-[#0a192f] via-[#1e3a8a] to-[#0a192f] tracking-wide leading-tight drop-shadow-sm text-center">
+              <TextEffect per="word" category="ceremonial" delay={0.25}>
+                Shri Thakurji's 25th
+              </TextEffect>
+            </h2>
+            <div className="font-cinzel text-[clamp(1.1rem,2.5vw,1.875rem)] text-[#0a192f] tracking-[0.4em] font-bold mt-2 sm:mt-4 uppercase text-center w-full">
+              <TextEffect per="word" category="ceremonial" delay={0.35}>
+                BIRTHDAY
+              </TextEffect>
+            </div>
+          </div>
 
-          <p className="font-cormorant text-xl sm:text-2xl text-amber-600 italic mt-2 sm:mt-3 font-semibold tracking-wide">
+          <p className="font-cormorant text-xl sm:text-2xl text-amber-600 italic mt-4 sm:mt-6 font-semibold tracking-wide w-full text-center">
             <TextEffect per="word" category="supporting" delay={0.45}>
               Silver Jubilee Janmashtami Mahotsav
             </TextEffect>
           </p>
 
-          <InView category="supporting" delay={0.65}>
-            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 text-xs font-cinzel text-[#0a192f] tracking-widest font-bold">
-              <span className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-white/60 backdrop-blur-sm px-4 py-2.5 rounded-lg border border-amber-100 shadow-sm">
+          <InView category="supporting" delay={0.65} className="w-full">
+            <div className="mt-8 flex flex-col md:flex-row flex-wrap items-stretch justify-center gap-4 text-xs font-cinzel text-[#0a192f] tracking-widest font-bold w-full mx-auto max-w-2xl">
+              <span className="w-full md:flex-1 flex items-center justify-center space-x-3 bg-white/60 backdrop-blur-sm px-4 py-3.5 rounded-lg border border-amber-100 shadow-sm text-center">
                 <Calendar className="w-4 h-4 text-amber-600 shrink-0" />
                 <span>SATURDAY, 29 AUGUST 2026</span>
               </span>
-              <span className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-white/60 backdrop-blur-sm px-4 py-2.5 rounded-lg border border-amber-100 shadow-sm">
+              <span className="w-full md:flex-1 flex items-center justify-center space-x-3 bg-white/60 backdrop-blur-sm px-4 py-3.5 rounded-lg border border-amber-100 shadow-sm text-center">
                 <Heart className="w-4 h-4 text-amber-600 shrink-0" />
-                <span>Arcadia Hall, Borivali West</span>
+                <span>ARCADIA HALL, BORIVALI WEST</span>
               </span>
             </div>
           </InView>

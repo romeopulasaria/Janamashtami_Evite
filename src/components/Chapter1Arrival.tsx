@@ -67,7 +67,7 @@ export const Chapter1Arrival: React.FC = () => {
             filter: isStarting ? "blur(8px)" : "blur(0px)" 
           }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="relative z-10 flex flex-col items-center text-center w-full mt-4 md:mt-8 shrink-0"
+          className="relative z-10 flex flex-col items-center text-center w-[calc(100%-24px)] max-w-full mx-auto mt-4 md:mt-8 shrink-0"
         >
           {/* Top Decorative Symbol (0.5s) */}
           <motion.div 
@@ -80,14 +80,14 @@ export const Chapter1Arrival: React.FC = () => {
           </motion.div>
 
           {/* SILVER JUBILEE INVITATION (0.7s) - Small uppercase serif, wide tracking, royal navy */}
-          <div className="font-cinzel text-[9px] sm:text-[10px] md:text-xs tracking-[0.3em] sm:tracking-[0.4em] text-[#0f172a] font-semibold uppercase drop-shadow-sm mb-6 w-full text-center">
+          <div className="font-cinzel text-[clamp(8px,2vw,12px)] tracking-[0.3em] md:tracking-[0.4em] text-[#0f172a] font-semibold uppercase drop-shadow-sm mb-6 w-full text-center">
             <TextEffect per="line" category="functional" delay={0.7}>
               SILVER JUBILEE INVITATION
             </TextEffect>
           </div>
 
           {/* Shri Thakurji's (1.0s) - Calligraphic/script, large, royal navy */}
-          <h1 className="font-cursive text-5xl sm:text-6xl md:text-8xl text-[#0f172a] tracking-wide leading-tight drop-shadow-sm mb-6 w-full text-center">
+          <h1 className="font-cursive text-[clamp(2.75rem,8vw,6rem)] text-[#0f172a] tracking-wide leading-tight drop-shadow-sm mb-6 w-full text-center">
             <TextEffect per="word" category="ceremonial" delay={1.0}>
               Shri Thakurji's
             </TextEffect>
@@ -100,11 +100,11 @@ export const Chapter1Arrival: React.FC = () => {
             transition={{ duration: 0.8, delay: 1.35, ease: "easeOut" }}
             className="font-cinzel text-[#0f172a] flex flex-col items-center mb-8 w-full"
           >
-            <div className="flex items-start justify-center w-full">
-              <span className="text-6xl sm:text-7xl md:text-[5.5rem] leading-none font-bold">25</span>
-              <span className="text-xl sm:text-2xl font-bold mt-1 ml-0.5">TH</span>
+            <div className="flex items-start justify-center w-full relative">
+              <span className="text-[clamp(3.5rem,12vw,5.5rem)] leading-none font-bold">25</span>
+              <span className="text-[clamp(1rem,3vw,1.5rem)] font-bold mt-1 ml-0.5">TH</span>
             </div>
-            <div className="text-lg sm:text-xl md:text-2xl tracking-[0.25em] font-bold mt-2 text-center w-full">
+            <div className="text-[clamp(1rem,3vw,1.5rem)] tracking-[0.25em] font-bold mt-2 text-center w-full">
               BIRTHDAY
             </div>
           </motion.div>
@@ -118,7 +118,7 @@ export const Chapter1Arrival: React.FC = () => {
           />
 
           {/* Silver Jubilee Janmashtami Mahotsav (1.9s) - Elegant italic serif, muted saffron/antique orange */}
-          <div className="font-cormorant text-lg sm:text-xl md:text-2xl text-[#c05621] italic font-semibold w-full text-center tracking-wide mb-6">
+          <div className="font-cormorant text-[clamp(1.1rem,3.5vw,1.5rem)] text-[#c05621] italic font-semibold w-full text-center tracking-wide mb-6">
             <TextEffect per="line" category="supporting" delay={1.9}>
               Silver Jubilee Janmashtami Mahotsav
             </TextEffect>
@@ -137,7 +137,7 @@ export const Chapter1Arrival: React.FC = () => {
           </motion.div>
 
           {/* Family invitation line (2.3s) - Small uppercase serif, wide tracking, navy */}
-          <div className="font-cinzel text-[8px] sm:text-[9px] md:text-[10px] tracking-[0.25em] text-[#0f172a] font-semibold uppercase leading-relaxed text-center w-[min(90vw,900px)] mx-auto mb-10">
+          <div className="font-cinzel text-[clamp(8px,2vw,10px)] tracking-[0.25em] text-[#0f172a] font-semibold uppercase leading-relaxed text-center w-[min(90vw,900px)] max-w-[calc(100vw-24px)] mx-auto mb-10">
             <TextEffect per="line" category="functional" delay={2.3}>
               WITH THE DIVINE BLESSINGS OF SHRI THAKURJI, THE KUMAR FAMILY LOVINGLY INVITES YOU
             </TextEffect>
