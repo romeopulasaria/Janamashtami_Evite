@@ -11,6 +11,8 @@ import { InView } from "@/components/motion-primitives/in-view";
 
 export const Chapter4InvitationScroll: React.FC = () => {
   const { currentState } = useCinematic();
+  const invitationHeadingGradientClass =
+    "[&_span]:bg-gradient-to-r [&_span]:from-[#0a192f] [&_span]:via-[#1e3a8a] [&_span]:to-[#0a192f] [&_span]:bg-clip-text [&_span]:[-webkit-background-clip:text] [&_span]:text-transparent [&_span]:[-webkit-text-fill-color:transparent]";
 
   const isVisible =
     currentState === "Invitation" ||
@@ -45,13 +47,13 @@ export const Chapter4InvitationScroll: React.FC = () => {
             </div>
           </InView>
 
-          <h2 className="font-cursive text-[clamp(2.7rem,11vw,5.5rem)] tracking-wide leading-tight drop-shadow-sm text-center w-full mx-auto">
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#0a192f] via-[#1e3a8a] to-[#0a192f]">
+          <h2 className="font-cursive text-[clamp(2.35rem,11vw,5.5rem)] tracking-wide leading-[0.95] sm:leading-tight drop-shadow-sm text-center w-full max-w-full mx-auto px-2 sm:px-0 text-[#0a192f]">
+            <span className={`block ${invitationHeadingGradientClass}`}>
               <TextEffect per="word" category="ceremonial" delay={0.25} triggerMode="animate">
-                Shri Thakurji's 25th
+                Shri Thakurji&apos;s 25th
               </TextEffect>
             </span>
-            <span className="block -mt-2 md:-mt-4 text-transparent bg-clip-text bg-gradient-to-r from-[#0a192f] via-[#1e3a8a] to-[#0a192f]">
+            <span className={`block -mt-1 sm:-mt-2 md:-mt-4 ${invitationHeadingGradientClass}`}>
               <TextEffect per="word" category="ceremonial" delay={0.35} triggerMode="animate">
                 Birthday
               </TextEffect>
