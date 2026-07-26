@@ -11,6 +11,7 @@ interface TextEffectProps {
   className?: string;
   delay?: number;
   category?: "ceremonial" | "supporting" | "functional";
+  triggerMode?: "inView" | "animate";
 }
 
 export const TextEffect: React.FC<TextEffectProps> = ({
@@ -20,6 +21,7 @@ export const TextEffect: React.FC<TextEffectProps> = ({
   className = "",
   delay = 0,
   category = "ceremonial",
+  triggerMode = "inView",
 }) => {
   const isCeremonial = category === "ceremonial";
   const isSupporting = category === "supporting";
@@ -77,8 +79,9 @@ export const TextEffect: React.FC<TextEffectProps> = ({
       className={`inline-block ${className}`}
       variants={containerVariants}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-10%" }}
+      whileInView={triggerMode === "inView" ? "visible" : undefined}
+      animate={triggerMode === "animate" ? "visible" : undefined}
+      viewport={triggerMode === "inView" ? { once: true, margin: "-10%" } : undefined}
       custom={delay}
     >
       {segments.map((segment, idx) => (
@@ -94,3 +97,4 @@ export const TextEffect: React.FC<TextEffectProps> = ({
     </motion.span>
   );
 };
+

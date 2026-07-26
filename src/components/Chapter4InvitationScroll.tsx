@@ -45,14 +45,14 @@ export const Chapter4InvitationScroll: React.FC = () => {
             </div>
           </InView>
 
-          <h2 className="flex flex-col items-center justify-center font-cursive text-[clamp(3rem,6.5vw,5.5rem)] text-transparent bg-clip-text bg-gradient-to-r from-[#0a192f] via-[#1e3a8a] to-[#0a192f] tracking-wide leading-tight drop-shadow-sm text-center w-full">
-            <span className="block">
-              <TextEffect per="word" category="ceremonial" delay={0.25}>
+          <h2 className="font-cursive text-[clamp(2.7rem,11vw,5.5rem)] tracking-wide leading-tight drop-shadow-sm text-center w-full mx-auto">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#0a192f] via-[#1e3a8a] to-[#0a192f]">
+              <TextEffect per="word" category="ceremonial" delay={0.25} triggerMode="animate">
                 Shri Thakurji's 25th
               </TextEffect>
             </span>
-            <span className="block -mt-2 md:-mt-4">
-              <TextEffect per="word" category="ceremonial" delay={0.35}>
+            <span className="block -mt-2 md:-mt-4 text-transparent bg-clip-text bg-gradient-to-r from-[#0a192f] via-[#1e3a8a] to-[#0a192f]">
+              <TextEffect per="word" category="ceremonial" delay={0.35} triggerMode="animate">
                 Birthday
               </TextEffect>
             </span>
