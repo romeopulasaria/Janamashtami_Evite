@@ -17,7 +17,10 @@ export const Chapter7ImmersiveRsvp: React.FC = () => {
   const [guestCount, setGuestCount] = useState("2");
   const [dietary, setDietary] = useState("Standard Sattvik Festive");
   const [message, setMessage] = useState("");
+  const [botField, setBotField] = useState(""); // honeypot
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const isVisible =
@@ -25,23 +28,75 @@ export const Chapter7ImmersiveRsvp: React.FC = () => {
     currentState === "RSVP" ||
     currentState === "ClosingBlessing";
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!fullName.trim()) return;
+    if (!fullName.trim() || isSubmitting) return;
 
-    // Trigger subtle flower petal confetti
-    confetti({
-      particleCount: 50,
-      spread: 70,
-      origin: { y: 0.6 },
-      colors: ["#f59e0b", "#10b981", "#0284c7", "#d4af37"],
-    });
+    if (botField) {
+      // Honeypot caught a bot, silently ignore
+      return;
+    }
 
-    setIsSubmitted(true);
+    setIsSubmitting(true);
+    setSubmitError(null);
 
-    setTimeout(() => {
-      setState("ClosingBlessing");
-    }, 4000);
+    try {
+      const endpoint = process.env.NEXT_PUBLIC_RSVP_ENDPOINT;
+      
+      if (!endpoint) {
+        console.warn("No RSVP endpoint configured. Simulating success for development.");
+        await new Promise(r => setTimeout(r, 1000));
+      } else {
+        const response = await fetch(endpoint, {
+          method: "POST",
+          // Use text/plain to avoid CORS preflight issues with Google Apps Script
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8",
+          },
+          body: JSON.stringify({
+            fullName: fullName.trim(),
+            attendance,
+            guestCount,
+            dietary,
+            message: message.trim(),
+          }),
+        });
+
+        if (!response.ok) throw new Error("Network response was not ok");
+        
+        // Sometimes Apps Script returns HTML if there's an error, so we try/catch the JSON parse
+        let data;
+        try {
+          data = await response.json();
+        } catch (jsonError) {
+          throw new Error("Invalid JSON response from server");
+        }
+
+        if (data.status !== "success") {
+          throw new Error(data.message || "Server returned error");
+        }
+      }
+
+      // Success
+      confetti({
+        particleCount: 50,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ["#f59e0b", "#10b981", "#0284c7", "#d4af37"],
+      });
+
+      setIsSubmitted(true);
+
+      setTimeout(() => {
+        setState("ClosingBlessing");
+      }, 4000);
+
+    } catch (err) {
+      console.error("RSVP Submission Error:", err);
+      setSubmitError("We couldn't record your RSVP. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleDownloadCalendar = () => {
@@ -107,6 +162,18 @@ export const Chapter7ImmersiveRsvp: React.FC = () => {
               onSubmit={handleSubmit}
               className="max-w-xl mx-auto space-y-6"
             >
+              {/* Honeypot Field */}
+              <div className="hidden" aria-hidden="true" style={{ display: "none" }}>
+                <input
+                  type="text"
+                  name="botField"
+                  value={botField}
+                  onChange={(e) => setBotField(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
+
               {/* Guest Full Name */}
               <div>
                 <label className="block font-cinzel text-xs tracking-wider text-[#0a192f] font-bold mb-2">
@@ -227,17 +294,31 @@ export const Chapter7ImmersiveRsvp: React.FC = () => {
                 />
               </div>
 
+              {/* Error Message */}
+              {submitError && (
+                <motion.div 
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg text-sm font-bold font-inter text-center shadow-sm"
+                >
+                  {submitError}
+                </motion.div>
+              )}
+
               {/* Submit Button */}
               <motion.button
                 type="submit"
-                whileHover={{ scale: 1.01 }}
-                whileTap={{ scale: 0.96 }}
-                className="relative overflow-hidden w-full min-h-[48px] py-4 rounded-sm outline-none transition-all flex items-center justify-center bg-gradient-to-b from-[#1e3a8a] to-[#0f172a] shadow-[0_10px_30px_rgba(0,0,0,0.3)] border-[2px] border-slate-300/80 hover:brightness-110 cursor-pointer group"
+                disabled={isSubmitting}
+                whileHover={!isSubmitting ? { scale: 1.01 } : {}}
+                whileTap={!isSubmitting ? { scale: 0.96 } : {}}
+                className={`relative overflow-hidden w-full min-h-[48px] py-4 rounded-sm outline-none transition-all flex items-center justify-center bg-gradient-to-b from-[#1e3a8a] to-[#0f172a] shadow-[0_10px_30px_rgba(0,0,0,0.3)] border-[2px] border-slate-300/80 group ${
+                  isSubmitting ? "opacity-75 cursor-not-allowed" : "hover:brightness-110 cursor-pointer"
+                }`}
               >
-                <BorderTrail duration={4} size={60} />
+                {!isSubmitting && <BorderTrail duration={4} size={60} />}
                 <span className="relative z-10 font-cinzel font-bold text-xs tracking-[0.2em] sm:tracking-[0.25em] text-[#f8fafc] uppercase flex items-center space-x-2.5 sm:space-x-3 drop-shadow-sm">
-                  <span>CONFIRM SACRED ATTENDANCE</span>
-                  <Send className="w-4 h-4 text-slate-300 group-hover:text-white transition-colors" />
+                  <span>{isSubmitting ? "Submitting..." : "CONFIRM SACRED ATTENDANCE"}</span>
+                  {!isSubmitting && <Send className="w-4 h-4 text-slate-300 group-hover:text-white transition-colors" />}
                 </span>
               </motion.button>
             </motion.form>
