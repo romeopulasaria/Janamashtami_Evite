@@ -27,15 +27,6 @@ export const Chapter4InvitationScroll: React.FC = () => {
       transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
       className="relative z-20 w-full max-w-4xl mx-auto px-4 py-12"
     >
-      {/* Top Royal Blue & Silver Scroll Handle Roller */}
-      <div className="relative w-full h-10 bg-gradient-to-r from-[#050b14] via-[#1e3a8a] to-[#050b14] rounded-t-full border-2 border-slate-300/40 shadow-[0_10px_30px_rgba(0,0,0,0.5)] flex items-center justify-between px-6 z-30">
-        <div className="w-7 h-7 rounded-full bg-gradient-to-br from-slate-200 to-slate-400 border-[2px] border-[#0a192f] shadow-inner" />
-        <div className="font-cinzel text-[10px] md:text-xs tracking-[0.4em] text-slate-200 font-bold uppercase drop-shadow-md">
-          ✦ SHRI THAKURJI MAHOTSAV INVITATION ✦
-        </div>
-        <div className="w-7 h-7 rounded-full bg-gradient-to-br from-slate-200 to-slate-400 border-[2px] border-[#0a192f] shadow-inner" />
-      </div>
-
       {/* Main Content Body - Illuminated Parchment */}
       <div className="bg-[#fffdf0] border-l-2 border-r-2 border-slate-300/30 p-6 md:p-12 relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
         
