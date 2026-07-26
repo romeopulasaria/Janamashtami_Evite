@@ -32,18 +32,16 @@ export const BabyKrishnaLineArt: React.FC<BabyKrishnaLineArtProps> = ({
       />
 
       {/* 2. Krishna Line-Art Layer */}
-      {/* We use mix-blend-mode: multiply to perfectly strip the white background,
-          leaving only the antique-gold line art printed onto the ivory paper below. */}
+      {/* The PNG asset itself has a genuinely transparent background. */}
       <div 
         className="relative z-10 pointer-events-none"
         style={{
           width: "clamp(240px, 35vw, 320px)",
           height: "clamp(240px, 35vw, 320px)",
-          mixBlendMode: "multiply",
         }}
       >
         <Image
-          src="/images/krishna-lineart.png"
+          src="/images/krishna-lineart-transparent.png"
           alt="Baby Krishna Line Art"
           fill
           priority

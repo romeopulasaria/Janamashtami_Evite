@@ -100,11 +100,11 @@ export const Chapter1Arrival: React.FC = () => {
             transition={{ duration: 0.8, delay: 1.35, ease: "easeOut" }}
             className="font-cinzel text-[#0f172a] flex flex-col items-center mb-8"
           >
-            <div className="flex items-start">
+            <div className="relative flex justify-center">
               <span className="text-6xl sm:text-7xl md:text-[5.5rem] leading-none font-bold">25</span>
-              <span className="text-xl sm:text-2xl font-bold mt-1 ml-0.5">TH</span>
+              <span className="absolute left-full top-1 ml-1 text-xl sm:text-2xl font-bold">TH</span>
             </div>
-            <div className="text-lg sm:text-xl md:text-2xl tracking-[0.25em] font-bold mt-2">
+            <div className="text-lg sm:text-xl md:text-2xl tracking-[0.25em] font-bold mt-2 text-center">
               BIRTHDAY
             </div>
           </motion.div>
