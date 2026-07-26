@@ -34,7 +34,7 @@ export const BabyKrishnaLineArt: React.FC<BabyKrishnaLineArtProps> = ({
       {/* 2. Krishna Line-Art Layer */}
       {/* The PNG asset itself has a genuinely transparent background. */}
       <div 
-        className="relative z-10 pointer-events-none"
+        className="relative z-10 pointer-events-none mx-auto"
         style={{
           width: "clamp(240px, 35vw, 320px)",
           height: "clamp(240px, 35vw, 320px)",
