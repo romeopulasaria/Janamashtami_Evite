@@ -45,18 +45,18 @@ export const Chapter4InvitationScroll: React.FC = () => {
             </div>
           </InView>
 
-          <div className="flex flex-col items-center justify-center w-full">
-            <h2 className="font-cursive text-[clamp(2rem,5vw,4.5rem)] text-transparent bg-clip-text bg-gradient-to-r from-[#0a192f] via-[#1e3a8a] to-[#0a192f] tracking-wide leading-tight drop-shadow-sm text-center">
+          <h2 className="flex flex-col items-center justify-center font-cursive text-[clamp(3rem,6.5vw,5.5rem)] text-transparent bg-clip-text bg-gradient-to-r from-[#0a192f] via-[#1e3a8a] to-[#0a192f] tracking-wide leading-tight drop-shadow-sm text-center w-full">
+            <span className="block">
               <TextEffect per="word" category="ceremonial" delay={0.25}>
                 Shri Thakurji's 25th
               </TextEffect>
-            </h2>
-            <div className="font-cinzel text-[clamp(1.1rem,2.5vw,1.875rem)] text-[#0a192f] tracking-[0.4em] font-bold mt-2 sm:mt-4 uppercase text-center w-full">
+            </span>
+            <span className="block -mt-2 md:-mt-4">
               <TextEffect per="word" category="ceremonial" delay={0.35}>
-                BIRTHDAY
+                Birthday
               </TextEffect>
-            </div>
-          </div>
+            </span>
+          </h2>
 
           <p className="font-cormorant text-xl sm:text-2xl text-amber-600 italic mt-4 sm:mt-6 font-semibold tracking-wide w-full text-center">
             <TextEffect per="word" category="supporting" delay={0.45}>
