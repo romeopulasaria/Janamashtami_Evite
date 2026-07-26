@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { AnimatedNumber } from "@/components/motion-primitives/animated-number";
 
 interface TimeLeft {
   days: number;
@@ -75,15 +76,17 @@ export const LuxuryCountdownPlaque: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1, duration: 0.6 }}
             viewport={{ once: true }}
-            className="rounded-lg p-3 sm:p-5 flex flex-col items-center justify-center relative overflow-hidden group shadow-[0_5px_15px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.8)] border border-slate-400 bg-gradient-to-br from-slate-100 via-slate-300 to-slate-400 transition-transform hover:-translate-y-1"
+            whileHover={{ y: -3, transition: { duration: 0.3 } }}
+            className="rounded-lg p-3 sm:p-5 flex flex-col items-center justify-center relative overflow-hidden group shadow-[0_5px_15px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.8)] border border-slate-400 bg-gradient-to-br from-slate-100 via-slate-300 to-slate-400"
           >
             {/* Soft highlight for metallic shine */}
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(255,255,255,0.6)_0%,transparent_50%)] pointer-events-none" />
 
-            {/* Number Display - Engraved Effect */}
-            <span className="relative z-10 font-cinzel text-2xl sm:text-4xl md:text-5xl font-bold text-slate-800 tracking-tight drop-shadow-[1px_1px_1px_rgba(255,255,255,0.9)]">
-              {String(unit.value).padStart(2, "0")}
-            </span>
+            {/* Number Display - Engraved Effect with AnimatedNumber */}
+            <AnimatedNumber
+              value={unit.value}
+              className="relative z-10 font-cinzel text-2xl sm:text-4xl md:text-5xl font-bold text-slate-800 tracking-tight drop-shadow-[1px_1px_1px_rgba(255,255,255,0.9)]"
+            />
 
             {/* Unit Label */}
             <span className="relative z-10 mt-1 sm:mt-2 font-inter text-[9px] sm:text-xs tracking-[0.2em] sm:tracking-[0.25em] text-slate-700 font-bold uppercase drop-shadow-[1px_1px_1px_rgba(255,255,255,0.9)]">

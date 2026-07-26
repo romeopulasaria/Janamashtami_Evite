@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useCinematic } from "@/context/CinematicContext";
 import Image from "next/image";
 import { Sparkles } from "lucide-react";
+import { BorderTrail } from "@/components/motion-primitives/border-trail";
 
 export const Chapter1Arrival: React.FC = () => {
   const { startExperience, currentState } = useCinematic();
@@ -23,14 +24,18 @@ export const Chapter1Arrival: React.FC = () => {
       <motion.div
         key="hero-container"
         initial={{ opacity: 1 }}
-        exit={{ opacity: 0, transition: { duration: 1.2, ease: "easeInOut" } }}
+        exit={{
+          opacity: 0,
+          scale: 0.98,
+          filter: "blur(6px)",
+          transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1] },
+        }}
         className="fixed inset-0 z-50 w-screen h-[100dvh] overflow-hidden"
         style={{ backgroundColor: "#ecd6b3" }}
       >
         {/* ================================================================ */}
         {/* 1. DEDICATED DESKTOP HERO (md:flex)                              */}
         {/* Aspect-ratio locked (1716 × 917) container with contain scaling.   */}
-        {/* Exact transparent scanned overlay over printed button artwork.   */}
         {/* ================================================================ */}
         <div className="hidden md:flex w-full h-full items-center justify-center">
           <div
@@ -54,12 +59,14 @@ export const Chapter1Arrival: React.FC = () => {
               }}
             />
 
-            {/* Desktop Transparent Interaction Button */}
-            <button
+            {/* Desktop Interaction Button */}
+            <motion.button
               onClick={handleStart}
               disabled={isStarting}
               aria-label="Enter the Mahotsav"
               title="Enter the Mahotsav"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.97 }}
               style={{
                 position: "absolute",
                 top: "86.37%",
@@ -82,7 +89,6 @@ export const Chapter1Arrival: React.FC = () => {
         {/* ================================================================ */}
         {/* 2. DEDICATED MOBILE HERO (block md:hidden)                       */}
         {/* Designed specifically for portrait mobile screens (320px–430px+).*/}
-        {/* Fills 100% viewport height with ZERO beige margins or letterbox. */}
         {/* ================================================================ */}
         <div className="block md:hidden relative w-full h-[100dvh] overflow-hidden">
           {/* Portrait Hero Background Artwork Layer */}
@@ -101,26 +107,24 @@ export const Chapter1Arrival: React.FC = () => {
             />
           </div>
 
-          {/* Vignette Gradient Overlay for Depth & Safe Button Visibility */}
+          {/* Vignette Gradient Overlay */}
           <div className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-b from-black/20 via-transparent to-black/40" />
 
-          {/* 
-            Thumb-Friendly Interactive Mobile Button Layer:
-            - Minimum height: 52px
-            - Minimum width: 220px (max 280px)
-            - Respects iPhone safe-area-inset-bottom
-          */}
+          {/* Thumb-Friendly Interactive Mobile Button Layer */}
           <div className="absolute bottom-6 left-0 right-0 z-40 flex items-center justify-center px-6 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
-            <button
+            <motion.button
               onClick={handleStart}
               disabled={isStarting}
               aria-label="Enter the Mahotsav"
-              className="w-full max-w-[280px] min-w-[220px] min-h-[52px] py-3.5 px-6 rounded-full bg-gradient-to-r from-[#1e3a8a] via-[#0b192f] to-[#1e3a8a] border-2 border-amber-300/90 text-amber-100 font-cinzel text-xs sm:text-sm font-bold tracking-[0.2em] uppercase shadow-[0_10px_30px_rgba(0,0,0,0.6),0_0_20px_rgba(245,158,11,0.4)] active:scale-95 transition-all flex items-center justify-center space-x-2.5 cursor-pointer hover:brightness-110"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.96 }}
+              className="relative overflow-hidden w-full max-w-[280px] min-w-[220px] min-h-[52px] py-3.5 px-6 rounded-full bg-gradient-to-r from-[#1e3a8a] via-[#0b192f] to-[#1e3a8a] border-2 border-amber-300/90 text-amber-100 font-cinzel text-xs sm:text-sm font-bold tracking-[0.2em] uppercase shadow-[0_10px_30px_rgba(0,0,0,0.6),0_0_20px_rgba(245,158,11,0.4)] transition-all flex items-center justify-center space-x-2.5 cursor-pointer hover:brightness-110"
             >
-              <Sparkles className="w-4 h-4 text-amber-300 animate-pulse shrink-0" />
-              <span className="drop-shadow-sm whitespace-nowrap">ENTER THE MAHOTSAV</span>
-              <Sparkles className="w-4 h-4 text-amber-300 animate-pulse shrink-0" />
-            </button>
+              <BorderTrail duration={4} size={50} />
+              <Sparkles className="w-4 h-4 text-amber-300 animate-pulse shrink-0 relative z-10" />
+              <span className="drop-shadow-sm whitespace-nowrap relative z-10">ENTER THE MAHOTSAV</span>
+              <Sparkles className="w-4 h-4 text-amber-300 animate-pulse shrink-0 relative z-10" />
+            </motion.button>
           </div>
         </div>
       </motion.div>

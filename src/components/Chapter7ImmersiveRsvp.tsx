@@ -5,6 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useCinematic } from "@/context/CinematicContext";
 import confetti from "canvas-confetti";
 import { Send, CheckCircle2, Calendar, HeartHandshake, Sparkles, User, Users } from "lucide-react";
+import { InView } from "@/components/motion-primitives/in-view";
+import { TextEffect } from "@/components/motion-primitives/text-effect";
+import { BorderTrail } from "@/components/motion-primitives/border-trail";
 
 export const Chapter7ImmersiveRsvp: React.FC = () => {
   const { currentState, setState } = useCinematic();
@@ -69,14 +72,7 @@ export const Chapter7ImmersiveRsvp: React.FC = () => {
   if (!isVisible) return null;
 
   return (
-    <motion.div
-      id="rsvp-section"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      viewport={{ once: true }}
-      className="w-full max-w-4xl mx-auto px-4 py-12 relative z-20"
-    >
+    <InView id="rsvp-section" variant="blur-fade" duration={0.9} className="w-full max-w-4xl mx-auto px-4 py-12 relative z-20">
       <div className="parchment-scroll parchment-border-royal rounded-3xl p-5 sm:p-8 md:p-12 relative overflow-hidden shadow-xl">
         
         {/* Header */}
@@ -87,7 +83,9 @@ export const Chapter7ImmersiveRsvp: React.FC = () => {
           </div>
 
           <h2 className="font-cursive text-2xl sm:text-4xl md:text-5xl font-bold text-[#0a192f] tracking-wide">
-            Accept The Sacred Invitation
+            <TextEffect per="word" preset="fade-in-blur">
+              Accept The Sacred Invitation
+            </TextEffect>
           </h2>
           <p className="font-cormorant text-lg text-slate-700 italic mt-2 font-bold">
             Please respond by August 15, 2026 to help us prepare your Mahaprasadam
@@ -98,9 +96,10 @@ export const Chapter7ImmersiveRsvp: React.FC = () => {
           {!isSubmitted ? (
             <motion.form
               key="rsvp-form"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15, filter: "blur(4px)" }}
+              transition={{ duration: 0.6 }}
               onSubmit={handleSubmit}
               className="max-w-xl mx-auto space-y-6"
             >
@@ -128,8 +127,10 @@ export const Chapter7ImmersiveRsvp: React.FC = () => {
                   ATTENDANCE CONFIRMATION *
                 </label>
                 <div className="grid grid-cols-2 gap-4">
-                  <button
+                  <motion.button
                     type="button"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.96 }}
                     onClick={() => setAttendance("accept")}
                     className={`min-h-[48px] py-3 px-3 sm:px-4 rounded-xl font-cinzel text-[11px] sm:text-xs font-bold tracking-wider border transition-all flex items-center justify-center space-x-1.5 sm:space-x-2 ${
                       attendance === "accept"
@@ -138,10 +139,12 @@ export const Chapter7ImmersiveRsvp: React.FC = () => {
                     }`}
                   >
                     <span>🪷 Joyfully Accept</span>
-                  </button>
+                  </motion.button>
 
-                  <button
+                  <motion.button
                     type="button"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.96 }}
                     onClick={() => setAttendance("decline")}
                     className={`min-h-[48px] py-3 px-3 sm:px-4 rounded-xl font-cinzel text-[11px] sm:text-xs font-bold tracking-wider border transition-all flex items-center justify-center space-x-1.5 sm:space-x-2 ${
                       attendance === "decline"
@@ -150,7 +153,7 @@ export const Chapter7ImmersiveRsvp: React.FC = () => {
                     }`}
                   >
                     <span>🙏 Regretfully Decline</span>
-                  </button>
+                  </motion.button>
                 </div>
               </div>
 
@@ -221,23 +224,26 @@ export const Chapter7ImmersiveRsvp: React.FC = () => {
               </div>
 
               {/* Submit Button */}
-              <button
+              <motion.button
                 type="submit"
-                className="w-full min-h-[48px] py-4 rounded-sm outline-none transition-all duration-250 active:scale-95 flex items-center justify-center bg-gradient-to-b from-[#1e3a8a] to-[#0f172a] shadow-[0_10px_30px_rgba(0,0,0,0.3)] border-[2px] border-slate-300/80 hover:brightness-110 overflow-hidden cursor-pointer group"
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.97 }}
+                className="relative overflow-hidden w-full min-h-[48px] py-4 rounded-sm outline-none transition-all flex items-center justify-center bg-gradient-to-b from-[#1e3a8a] to-[#0f172a] shadow-[0_10px_30px_rgba(0,0,0,0.3)] border-[2px] border-slate-300/80 hover:brightness-110 cursor-pointer group"
               >
+                <BorderTrail duration={4} size={60} />
                 <span className="relative z-10 font-cinzel font-bold text-xs tracking-[0.2em] sm:tracking-[0.25em] text-[#f8fafc] uppercase flex items-center space-x-2.5 sm:space-x-3 drop-shadow-sm">
                   <span>CONFIRM SACRED ATTENDANCE</span>
                   <Send className="w-4 h-4 text-slate-300 group-hover:text-white transition-colors" />
                 </span>
-              </button>
+              </motion.button>
             </motion.form>
           ) : (
             /* Confirmation Screen */
             <motion.div
               key="rsvp-confirmation"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
+              initial={{ opacity: 0, scale: 0.92, filter: "blur(6px)" }}
+              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="text-center py-8 space-y-6 max-w-lg mx-auto"
             >
               <div className="w-20 h-20 rounded-full bg-slate-100 border-2 border-[#1e3a8a] flex items-center justify-center text-[#1e3a8a] mx-auto shadow-md">
@@ -249,7 +255,9 @@ export const Chapter7ImmersiveRsvp: React.FC = () => {
                   RSVP CONFIRMED
                 </span>
                 <h3 className="font-cursive text-2xl sm:text-4xl text-[#0a192f] font-bold mt-2">
-                  Thank You, {fullName}!
+                  <TextEffect per="word" preset="fade-in-blur">
+                    {`Thank You, ${fullName}!`}
+                  </TextEffect>
                 </h3>
                 <p className="font-cormorant text-lg text-[#0a192f] italic font-bold mt-3">
                   &ldquo;Your gracious presence will illuminate Shri Thakurji&apos;s 25th Birthday Silver Jubilee Janmashtami Mahotsav.&rdquo;
@@ -257,13 +265,15 @@ export const Chapter7ImmersiveRsvp: React.FC = () => {
               </div>
 
               <div className="pt-4">
-                <button
+                <motion.button
                   onClick={handleDownloadCalendar}
-                  className="px-6 py-3 min-h-[44px] rounded-sm bg-gradient-to-b from-[#1e3a8a] to-[#0f172a] text-[#f8fafc] font-cinzel text-xs tracking-wider transition-all shadow-md hover:shadow-lg active:scale-95 flex items-center justify-center space-x-2 mx-auto font-bold border-[2px] border-slate-300/80 hover:brightness-110 cursor-pointer"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.96 }}
+                  className="px-6 py-3 min-h-[44px] rounded-sm bg-gradient-to-b from-[#1e3a8a] to-[#0f172a] text-[#f8fafc] font-cinzel text-xs tracking-wider transition-all shadow-md hover:shadow-lg flex items-center justify-center space-x-2 mx-auto font-bold border-[2px] border-slate-300/80 hover:brightness-110 cursor-pointer"
                 >
                   <Calendar className="w-4 h-4 text-slate-300" />
                   <span>DOWNLOAD CALENDAR REMINDER (.ICS)</span>
-                </button>
+                </motion.button>
               </div>
 
               <div className="flex items-center justify-center space-x-2 text-slate-500 font-cinzel text-[10px] tracking-widest uppercase font-bold mt-6">
@@ -276,6 +286,6 @@ export const Chapter7ImmersiveRsvp: React.FC = () => {
         </AnimatePresence>
 
       </div>
-    </motion.div>
+    </InView>
   );
 };
