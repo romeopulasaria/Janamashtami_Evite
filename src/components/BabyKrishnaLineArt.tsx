@@ -32,20 +32,20 @@ export const BabyKrishnaLineArt: React.FC<BabyKrishnaLineArtProps> = ({
       />
 
       {/* 2. Krishna Line-Art Layer */}
-      {/* The PNG asset itself has a genuinely transparent background. */}
+      {/* Genuinely transparent background stripped from the raw artwork */}
       <div 
-        className="relative z-10 pointer-events-none mx-auto"
+        className="relative z-10 pointer-events-none mx-auto flex justify-center items-center"
         style={{
-          width: "clamp(240px, 35vw, 320px)",
-          height: "clamp(240px, 35vw, 320px)",
+          width: "clamp(260px, 45vw, 420px)",
         }}
       >
         <Image
-          src="/images/krishna-colored-enhanced.png"
+          src="/images/krishna-transparent-final.png"
           alt="Baby Krishna Colored Illustration"
-          fill
+          width={1319}
+          height={1192}
+          className="w-full h-auto object-contain"
           priority
-          style={{ objectFit: "contain", objectPosition: "center center" }}
         />
       </div>
     </motion.div>
