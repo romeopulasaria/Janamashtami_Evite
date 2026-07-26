@@ -41,7 +41,7 @@ export const BabyKrishnaLineArt: React.FC<BabyKrishnaLineArtProps> = ({
         }}
       >
         <Image
-          src="/images/krishna-colored-final.png"
+          src="/images/krishna-colored-enhanced.png"
           alt="Baby Krishna Colored Illustration"
           fill
           priority
