@@ -1,19 +1,35 @@
 "use client";
 
-import React from "react";
+import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { useCinematic } from "@/context/CinematicContext";
 import { Sparkles, Flame } from "lucide-react";
 import { TextEffect } from "@/components/motion-primitives/text-effect";
 import { InView } from "@/components/motion-primitives/in-view";
+import { triggerFlowerBurst } from "@/lib/flower-burst";
 
 export const Chapter8ClosingBlessing: React.FC = () => {
   const { currentState } = useCinematic();
+  const [isBursting, setIsBursting] = useState(false);
+  const buttonRef = useRef<HTMLDivElement>(null);
 
   const isVisible =
     currentState === "ClosingBlessing" ||
     currentState === "ScrollJourney" ||
     currentState === "RSVP";
+
+  const handleJaiShriKrishnaClick = () => {
+    if (isBursting) return;
+    setIsBursting(true);
+    
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    triggerFlowerBurst(buttonRef.current, prefersReducedMotion);
+    
+    // Cooldown
+    setTimeout(() => {
+      setIsBursting(false);
+    }, 1500);
+  };
 
   if (!isVisible) return null;
 
@@ -60,12 +76,25 @@ export const Chapter8ClosingBlessing: React.FC = () => {
             </div>
 
             {/* Final Sacred Motto */}
-            <InView category="functional" delay={0.7} className="pt-12">
+            <InView category="functional" delay={0.7} className="pt-12 relative flex justify-center">
+              
+              {/* Divine Burst Glow */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={isBursting ? { opacity: [0, 0.4, 0], scale: [0.8, 1.4, 1.8] } : { opacity: 0, scale: 0.8 }}
+                transition={{ duration: 1.2, ease: "easeOut" }}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 md:w-56 md:h-56 rounded-full bg-[radial-gradient(circle,rgba(212,175,55,0.7)_0%,transparent_70%)] blur-2xl pointer-events-none"
+              />
+
               {/* Royal Blue & Silver Badge */}
               <motion.div 
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center space-x-2 sm:space-x-4 px-4 sm:px-8 py-3 sm:py-4 rounded-sm bg-gradient-to-b from-[#1e3a8a] to-[#0f172a] border-[2px] border-slate-300/80 text-[#f8fafc] font-cinzel text-sm sm:text-lg md:text-xl tracking-[0.2em] sm:tracking-[0.4em] uppercase shadow-[0_10px_25px_rgba(0,0,0,0.3)] font-bold cursor-pointer"
+                ref={buttonRef}
+                onClick={handleJaiShriKrishnaClick}
+                animate={isBursting ? { scale: [1, 0.97, 1.02, 1] } : { scale: 1 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                whileHover={!isBursting ? { scale: 1.02 } : undefined}
+                whileTap={!isBursting ? { scale: 0.97 } : undefined}
+                className="relative z-10 inline-flex items-center space-x-2 sm:space-x-4 px-4 sm:px-8 py-3 sm:py-4 rounded-sm bg-gradient-to-b from-[#1e3a8a] to-[#0f172a] border-[2px] border-slate-300/80 text-[#f8fafc] font-cinzel text-sm sm:text-lg md:text-xl tracking-[0.2em] sm:tracking-[0.4em] uppercase shadow-[0_10px_25px_rgba(0,0,0,0.3)] font-bold cursor-pointer"
               >
                 <Sparkles className="w-5 h-5 text-slate-300 animate-pulse" />
                 <span className="drop-shadow-sm">JAI SHRI KRISHNA</span>
