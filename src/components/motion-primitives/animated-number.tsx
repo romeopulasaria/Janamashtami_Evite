@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { motion, useSpring, useTransform } from "framer-motion";
+import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface AnimatedNumberProps {
   value: number;
@@ -14,20 +14,25 @@ export const AnimatedNumber: React.FC<AnimatedNumberProps> = ({
   className = "",
   padZero = true,
 }) => {
-  const animatedValue = useSpring(value, {
-    stiffness: 120,
-    damping: 18,
-    mass: 0.8,
-  });
+  const formatted = padZero ? String(value).padStart(2, "0") : String(value);
 
-  useEffect(() => {
-    animatedValue.set(value);
-  }, [value, animatedValue]);
-
-  const displayValue = useTransform(animatedValue, (current) => {
-    const rounded = Math.max(0, Math.floor(current));
-    return padZero ? String(rounded).padStart(2, "0") : String(rounded);
-  });
-
-  return <motion.span className={className}>{displayValue}</motion.span>;
+  return (
+    <span className={`inline-flex items-center overflow-hidden h-[1.1em] ${className}`}>
+      <AnimatePresence mode="popLayout" initial={false}>
+        <motion.span
+          key={formatted}
+          initial={{ y: -24, opacity: 0, filter: "blur(4px)" }}
+          animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+          exit={{ y: 24, opacity: 0, filter: "blur(4px)" }}
+          transition={{
+            duration: 0.45,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="inline-block"
+        >
+          {formatted}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
 };

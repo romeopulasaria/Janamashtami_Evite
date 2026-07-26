@@ -18,10 +18,13 @@ export const Chapter8ClosingBlessing: React.FC = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="w-full py-12 sm:py-24 md:py-32 relative z-20">
-      <InView variant="blur-fade" duration={1.0} className="w-full max-w-4xl mx-auto px-4 relative z-20 text-center">
+    <div className="w-full py-16 sm:py-28 md:py-36 relative z-20 overflow-hidden">
+      {/* Subtle Warm Illumination Halo behind final blessing */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[700px] h-[350px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(251,191,36,0.18)_0%,rgba(212,175,55,0.08)_50%,transparent_80%)] blur-3xl pointer-events-none" />
+
+      <InView variant="blur-fade" duration={1.2} className="w-full max-w-4xl mx-auto px-4 relative z-20 text-center">
         {/* Soft, warm cream / pale marigold yellow card */}
-        <div className="bg-[#fffdf0] rounded-[24px] sm:rounded-[40px] p-5 sm:p-8 md:p-16 relative overflow-hidden border-4 sm:border-[6px] border-slate-300/50 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+        <div className="bg-[#fffdf0]/95 backdrop-blur-md rounded-[24px] sm:rounded-[40px] p-6 sm:p-10 md:p-16 relative overflow-hidden border-4 sm:border-[6px] border-slate-300/50 shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
           
           {/* Decorative Inner Border */}
           <div className="absolute inset-2 sm:inset-3 border-2 border-dashed border-slate-400/40 rounded-[18px] sm:rounded-[30px] pointer-events-none" />
@@ -40,28 +43,34 @@ export const Chapter8ClosingBlessing: React.FC = () => {
 
             {/* Eagerly Await Message */}
             <div className="flex flex-col items-center">
-              {/* High contrast deep navy blue cursive text */}
+              {/* High contrast deep navy blue cursive text with ceremonial delay */}
               <h3 className="font-cursive text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#0a192f] font-bold tracking-wide py-2 sm:py-4 leading-snug sm:leading-normal drop-shadow-sm text-center">
-                <TextEffect per="word" preset="fade-in-blur" delay={0.3}>
+                <TextEffect per="word" preset="fade-in-blur" delay={0.4}>
                   We eagerly await your gracious presence.
                 </TextEffect>
               </h3>
               
-              <div className="w-24 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent my-6" />
+              <div className="w-24 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent my-6 opacity-60" />
 
               <p className="font-cormorant text-lg sm:text-xl md:text-2xl text-[#1e3a8a] italic font-bold leading-relaxed px-2 sm:px-4 text-center">
-                May Shri Thakurji bless you and your family with peace, devotion, and joy. We look forward to celebrating this sacred occasion together.
+                <TextEffect per="word" preset="fade-up" delay={0.7}>
+                  May Shri Thakurji bless you and your family with peace, devotion, and joy. We look forward to celebrating this sacred occasion together.
+                </TextEffect>
               </p>
             </div>
 
             {/* Final Sacred Motto */}
-            <InView variant="scale-in" delay={0.5} className="pt-12">
+            <InView variant="scale-in" delay={1.0} className="pt-12">
               {/* Royal Blue & Silver Badge */}
-              <div className="inline-flex items-center space-x-2 sm:space-x-4 px-4 sm:px-8 py-3 sm:py-4 rounded-sm bg-gradient-to-b from-[#1e3a8a] to-[#0f172a] border-[2px] border-slate-300/80 text-[#f8fafc] font-cinzel text-sm sm:text-lg md:text-xl tracking-[0.2em] sm:tracking-[0.4em] uppercase shadow-[0_10px_25px_rgba(0,0,0,0.3)] font-bold">
-                <Sparkles className="w-5 h-5 text-slate-300" />
+              <motion.div 
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="inline-flex items-center space-x-2 sm:space-x-4 px-4 sm:px-8 py-3 sm:py-4 rounded-sm bg-gradient-to-b from-[#1e3a8a] to-[#0f172a] border-[2px] border-slate-300/80 text-[#f8fafc] font-cinzel text-sm sm:text-lg md:text-xl tracking-[0.2em] sm:tracking-[0.4em] uppercase shadow-[0_10px_25px_rgba(0,0,0,0.3)] font-bold cursor-pointer"
+              >
+                <Sparkles className="w-5 h-5 text-slate-300 animate-pulse" />
                 <span className="drop-shadow-sm">JAI SHRI KRISHNA</span>
-                <Sparkles className="w-5 h-5 text-slate-300" />
-              </div>
+                <Sparkles className="w-5 h-5 text-slate-300 animate-pulse" />
+              </motion.div>
             </InView>
 
           </div>

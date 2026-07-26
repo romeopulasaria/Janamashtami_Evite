@@ -16,29 +16,36 @@ export const Chapter1Arrival: React.FC = () => {
   const handleStart = () => {
     if (isStarting) return;
     setIsStarting(true);
-    startExperience();
+    // 300ms button depression + gold illumination delay before starting transition
+    setTimeout(() => {
+      startExperience();
+    }, 300);
   };
 
   return (
     <AnimatePresence>
       <motion.div
         key="hero-container"
-        initial={{ opacity: 1 }}
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
         exit={{
           opacity: 0,
-          scale: 0.98,
-          filter: "blur(6px)",
-          transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1] },
+          y: -60,
+          filter: "blur(12px)",
+          transition: { duration: 1.4, ease: [0.22, 1, 0.36, 1] },
         }}
+        transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
         className="fixed inset-0 z-50 w-screen h-[100dvh] overflow-hidden"
         style={{ backgroundColor: "#ecd6b3" }}
       >
         {/* ================================================================ */}
         {/* 1. DEDICATED DESKTOP HERO (md:flex)                              */}
-        {/* Aspect-ratio locked (1716 × 917) container with contain scaling.   */}
         {/* ================================================================ */}
         <div className="hidden md:flex w-full h-full items-center justify-center">
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 1.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="relative w-full h-full flex items-center justify-center"
             style={{
               aspectRatio: "1716 / 917",
@@ -66,7 +73,7 @@ export const Chapter1Arrival: React.FC = () => {
               aria-label="Enter the Mahotsav"
               title="Enter the Mahotsav"
               whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.97 }}
+              whileTap={{ scale: 0.94 }}
               style={{
                 position: "absolute",
                 top: "86.37%",
@@ -83,16 +90,20 @@ export const Chapter1Arrival: React.FC = () => {
                 zIndex: 40,
               }}
             />
-          </div>
+          </motion.div>
         </div>
 
         {/* ================================================================ */}
         {/* 2. DEDICATED MOBILE HERO (block md:hidden)                       */}
-        {/* Designed specifically for portrait mobile screens (320px–430px+).*/}
         {/* ================================================================ */}
         <div className="block md:hidden relative w-full h-[100dvh] overflow-hidden">
-          {/* Portrait Hero Background Artwork Layer */}
-          <div className="absolute inset-0 z-10 w-full h-full">
+          {/* Portrait Hero Background Artwork Layer with blur-to-sharp assembly */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 1.05, filter: "blur(10px)" }}
+            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            transition={{ duration: 1.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute inset-0 z-10 w-full h-full"
+          >
             <Image
               src="/images/homepage-cover-mobile.png"
               alt="Shri Thakurji 25th Birthday Mahotsav - Mobile"
@@ -105,27 +116,34 @@ export const Chapter1Arrival: React.FC = () => {
                 objectPosition: "center top",
               }}
             />
-          </div>
+          </motion.div>
 
           {/* Vignette Gradient Overlay */}
           <div className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-b from-black/20 via-transparent to-black/40" />
 
           {/* Thumb-Friendly Interactive Mobile Button Layer */}
-          <div className="absolute bottom-6 left-0 right-0 z-40 flex items-center justify-center px-6 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.0, delay: 1.4, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute bottom-6 left-0 right-0 z-40 flex items-center justify-center px-6 pb-[max(0.75rem,env(safe-area-inset-bottom))]"
+          >
             <motion.button
               onClick={handleStart}
               disabled={isStarting}
               aria-label="Enter the Mahotsav"
               whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.96 }}
+              whileTap={{ scale: 0.94 }}
               className="relative overflow-hidden w-full max-w-[280px] min-w-[220px] min-h-[52px] py-3.5 px-6 rounded-full bg-gradient-to-r from-[#1e3a8a] via-[#0b192f] to-[#1e3a8a] border-2 border-amber-300/90 text-amber-100 font-cinzel text-xs sm:text-sm font-bold tracking-[0.2em] uppercase shadow-[0_10px_30px_rgba(0,0,0,0.6),0_0_20px_rgba(245,158,11,0.4)] transition-all flex items-center justify-center space-x-2.5 cursor-pointer hover:brightness-110"
             >
-              <BorderTrail duration={4} size={50} />
+              <BorderTrail duration={isStarting ? 1.5 : 4} size={60} />
               <Sparkles className="w-4 h-4 text-amber-300 animate-pulse shrink-0 relative z-10" />
-              <span className="drop-shadow-sm whitespace-nowrap relative z-10">ENTER THE MAHOTSAV</span>
+              <span className="drop-shadow-sm whitespace-nowrap relative z-10">
+                {isStarting ? "ENTERING..." : "ENTER THE MAHOTSAV"}
+              </span>
               <Sparkles className="w-4 h-4 text-amber-300 animate-pulse shrink-0 relative z-10" />
             </motion.button>
-          </div>
+          </motion.div>
         </div>
       </motion.div>
     </AnimatePresence>
